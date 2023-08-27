@@ -37,149 +37,153 @@ class _RecuperarSenhaWidgetState extends State<RecuperarSenhaWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        automaticallyImplyLeading: false,
-        leading: InkWell(
-          splashColor: Colors.transparent,
-          focusColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onTap: () async {
-            context.pop();
-          },
-          child: Icon(
-            Icons.chevron_left_rounded,
-            color: FlutterFlowTheme.of(context).secondaryText,
-            size: 32.0,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          automaticallyImplyLeading: false,
+          leading: InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              context.pop();
+            },
+            child: Icon(
+              Icons.chevron_left_rounded,
+              color: FlutterFlowTheme.of(context).secondaryText,
+              size: 32.0,
+            ),
           ),
+          title: Text(
+            'Recuperar Senha',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Lexend Deca',
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                ),
+          ),
+          actions: [],
+          centerTitle: false,
+          elevation: 0.0,
         ),
-        title: Text(
-          'Recuperar Senha',
-          style: FlutterFlowTheme.of(context).headlineMedium.override(
-                fontFamily: 'Lexend Deca',
-                color: FlutterFlowTheme.of(context).secondaryText,
-              ),
-        ),
-        actions: [],
-        centerTitle: false,
-        elevation: 0.0,
-      ),
-      body: Container(
-        width: MediaQuery.sizeOf(context).width * 1.0,
-        height: MediaQuery.sizeOf(context).height * 1.0,
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
-              child: TextFormField(
-                controller: _model.emailAddressController,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelText: 'Email',
-                  labelStyle: FlutterFlowTheme.of(context).bodyMedium,
-                  hintText: 'Informe o email cadastrado...',
-                  hintStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+        body: Container(
+          width: MediaQuery.sizeOf(context).width * 1.0,
+          height: MediaQuery.sizeOf(context).height * 1.0,
+          decoration: BoxDecoration(
+            color: FlutterFlowTheme.of(context).secondaryBackground,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                child: TextFormField(
+                  controller: _model.emailAddressController,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    labelStyle: FlutterFlowTheme.of(context).bodyMedium,
+                    hintText: 'Informe o email cadastrado...',
+                    hintStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Lexend Deca',
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.normal,
+                        ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
+                    filled: true,
+                    fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                    contentPadding:
+                        EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 24.0),
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Lexend Deca',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 14.0,
                         fontWeight: FontWeight.normal,
                       ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      width: 1.0,
-                    ),
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1.0,
-                    ),
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1.0,
-                    ),
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1.0,
-                    ),
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
-                  filled: true,
-                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                  contentPadding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 24.0),
+                  keyboardType: TextInputType.emailAddress,
+                  validator: _model.emailAddressControllerValidator
+                      .asValidator(context),
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Lexend Deca',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.normal,
-                    ),
-                keyboardType: TextInputType.emailAddress,
-                validator:
-                    _model.emailAddressControllerValidator.asValidator(context),
               ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
-              child: FFButtonWidget(
-                onPressed: () async {
-                  if (_model.emailAddressController.text.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Email required!',
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    if (_model.emailAddressController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Email required!',
+                          ),
                         ),
-                      ),
+                      );
+                      return;
+                    }
+                    await authManager.resetPassword(
+                      email: _model.emailAddressController.text,
+                      context: context,
                     );
-                    return;
-                  }
-                  await authManager.resetPassword(
-                    email: _model.emailAddressController.text,
-                    context: context,
-                  );
-                  context.pop();
-                },
-                text: 'Enviar Solicitação',
-                options: FFButtonOptions(
-                  width: 230.0,
-                  height: 60.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Lexend Deca',
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                      ),
-                  elevation: 3.0,
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
+                    context.pop();
+                  },
+                  text: 'Enviar Solicitação',
+                  options: FFButtonOptions(
+                    width: 230.0,
+                    height: 60.0,
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    iconPadding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Lexend Deca',
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                        ),
+                    elevation: 3.0,
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(40.0),
                   ),
-                  borderRadius: BorderRadius.circular(40.0),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

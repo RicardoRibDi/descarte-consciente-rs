@@ -1,5 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/components/reenviar_email_widget.dart';
+import '/components/reenviar_email/reenviar_email_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 class TelaDeLoginModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // State field(s) for TextFieldEmail widget.
   TextEditingController? textFieldEmailController;
   String? Function(BuildContext, String?)? textFieldEmailControllerValidator;
@@ -25,6 +26,7 @@ class TelaDeLoginModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     textFieldEmailController?.dispose();
     textFieldSenhaController?.dispose();
   }

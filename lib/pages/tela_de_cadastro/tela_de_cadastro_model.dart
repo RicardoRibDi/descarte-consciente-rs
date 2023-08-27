@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 class TelaDeCadastroModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // State field(s) for nome widget.
   TextEditingController? nomeController;
   String? Function(BuildContext, String?)? nomeControllerValidator;
@@ -42,6 +43,7 @@ class TelaDeCadastroModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     nomeController?.dispose();
     emailController?.dispose();
     telefoneController?.dispose();

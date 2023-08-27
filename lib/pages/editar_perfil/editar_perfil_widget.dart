@@ -75,40 +75,40 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
           );
         }
         final editarPerfilUsuariosRecord = snapshot.data!;
-        return Scaffold(
-          key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            automaticallyImplyLeading: false,
-            leading: InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () async {
-                context.pop();
-              },
-              child: Icon(
-                Icons.arrow_back_rounded,
-                color: FlutterFlowTheme.of(context).secondaryText,
-                size: 24.0,
+        return GestureDetector(
+          onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            appBar: AppBar(
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+              automaticallyImplyLeading: false,
+              leading: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.pop();
+                },
+                child: Icon(
+                  Icons.arrow_back_rounded,
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                  size: 24.0,
+                ),
               ),
+              title: Text(
+                'Editar Perfil',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Lexend Deca',
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                    ),
+              ),
+              actions: [],
+              centerTitle: false,
+              elevation: 0.0,
             ),
-            title: Text(
-              'Editar Perfil',
-              style: FlutterFlowTheme.of(context).headlineMedium.override(
-                    fontFamily: 'Lexend Deca',
-                    color: FlutterFlowTheme.of(context).secondaryText,
-                  ),
-            ),
-            actions: [],
-            centerTitle: false,
-            elevation: 0.0,
-          ),
-          body: SafeArea(
-            top: true,
-            child: Column(
+            body: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Material(
@@ -150,7 +150,7 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                         .override(
                                           fontFamily: 'Lexend Deca',
                                           color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                              .error,
                                         ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -162,7 +162,8 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0x00000000),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
                                         width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(30.0),
@@ -193,7 +194,7 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                       .override(
                                         fontFamily: 'Lexend Deca',
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
+                                            .accent4,
                                       ),
                                   keyboardType: TextInputType.emailAddress,
                                   validator: _model.textController1Validator
@@ -232,7 +233,7 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                         .override(
                                           fontFamily: 'Lexend Deca',
                                           color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                              .error,
                                         ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -244,7 +245,8 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0x00000000),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
                                         width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(30.0),
@@ -275,7 +277,7 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                       .override(
                                         fontFamily: 'Lexend Deca',
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
+                                            .accent4,
                                       ),
                                   validator: _model.textController2Validator
                                       .asValidator(context),
@@ -312,7 +314,7 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                         .override(
                                           fontFamily: 'Lexend Deca',
                                           color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                              .error,
                                         ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -324,7 +326,8 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0x00000000),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
                                         width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(30.0),
@@ -355,7 +358,7 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                       .override(
                                         fontFamily: 'Lexend Deca',
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
+                                            .accent4,
                                       ),
                                   validator: _model.textController3Validator
                                       .asValidator(context),
@@ -403,7 +406,8 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0x00000000),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
                                         width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(30.0),
@@ -480,7 +484,8 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0x00000000),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
                                         width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(30.0),
@@ -527,9 +532,8 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                             onPressed: () async {
                               await editarPerfilUsuariosRecord.reference
                                   .update(createUsuariosRecordData(
-                                email: _model.textController1.text,
-                                nome: '',
-                                tipoDeUsuario: '',
+                                telefone: _model.textController4.text,
+                                endereco: _model.textController5.text,
                               ));
                               context.pop();
                             },
