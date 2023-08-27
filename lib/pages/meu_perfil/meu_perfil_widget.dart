@@ -616,7 +616,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed('recuperarSenha');
+                                context.pushNamed('mudarSenha');
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,

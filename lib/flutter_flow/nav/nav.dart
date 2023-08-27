@@ -130,6 +130,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'telaPrincipal',
           path: '/telaPrincipal',
           builder: (context, params) => TelaPrincipalWidget(),
+        ),
+        FFRoute(
+          name: 'mudarSenha',
+          path: '/mudarSenha',
+          builder: (context, params) => MudarSenhaWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
