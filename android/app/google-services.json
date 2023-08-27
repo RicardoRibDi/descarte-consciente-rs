@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "217223097384",
+    "project_id": "descarteconscienters",
+    "storage_bucket": "descarteconscienters.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217223097384:android:81679ffbfd14c9d4b7d91d",
+        "android_client_info": {
+          "package_name": "descarte.consciente.rs.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217223097384-h91ubd9fv03a9pqe9036a1pndkpec29g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "descarte.consciente.rs.app",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "217223097384-q68hue2074kfoj20clls819c8i0unl6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz2ol8rNQd1rTOuN9Nqd80CKvYcHm4i18"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217223097384-i8plp978s399dmst2pl8jb6cu8p5vrle.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "217223097384-lnltmcu8u1rua01ue5evlnp72vp1chjj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "descarte.consciente.rs.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

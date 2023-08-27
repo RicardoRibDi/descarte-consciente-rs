@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>217223097384-lnltmcu8u1rua01ue5evlnp72vp1chjj.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.217223097384-lnltmcu8u1rua01ue5evlnp72vp1chjj</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>217223097384-h91ubd9fv03a9pqe9036a1pndkpec29g.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA1Bq8-bAvu_3W9KdD-5zzD4dq8xSCq-Mg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>217223097384</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>descarte.consciente.rs.app</string>
+	<key>PROJECT_ID</key>
+	<string>descarteconscienters</string>
+	<key>STORAGE_BUCKET</key>
+	<string>descarteconscienters.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:217223097384:ios:032478d419c71d63b7d91d</string>
+</dict>
+</plist>
