@@ -5,25 +5,25 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'mudar_senha_model.dart';
-export 'mudar_senha_model.dart';
+import 'tela_senha_mudar_model.dart';
+export 'tela_senha_mudar_model.dart';
 
-class MudarSenhaWidget extends StatefulWidget {
-  const MudarSenhaWidget({Key? key}) : super(key: key);
+class TelaSenhaMudarWidget extends StatefulWidget {
+  const TelaSenhaMudarWidget({Key? key}) : super(key: key);
 
   @override
-  _MudarSenhaWidgetState createState() => _MudarSenhaWidgetState();
+  _TelaSenhaMudarWidgetState createState() => _TelaSenhaMudarWidgetState();
 }
 
-class _MudarSenhaWidgetState extends State<MudarSenhaWidget> {
-  late MudarSenhaModel _model;
+class _TelaSenhaMudarWidgetState extends State<TelaSenhaMudarWidget> {
+  late TelaSenhaMudarModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => MudarSenhaModel());
+    _model = createModel(context, () => TelaSenhaMudarModel());
 
     _model.emailAddressController ??= TextEditingController();
   }

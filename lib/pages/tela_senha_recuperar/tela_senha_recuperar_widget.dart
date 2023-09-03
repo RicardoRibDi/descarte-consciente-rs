@@ -5,25 +5,26 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'recuperar_senha_model.dart';
-export 'recuperar_senha_model.dart';
+import 'tela_senha_recuperar_model.dart';
+export 'tela_senha_recuperar_model.dart';
 
-class RecuperarSenhaWidget extends StatefulWidget {
-  const RecuperarSenhaWidget({Key? key}) : super(key: key);
+class TelaSenhaRecuperarWidget extends StatefulWidget {
+  const TelaSenhaRecuperarWidget({Key? key}) : super(key: key);
 
   @override
-  _RecuperarSenhaWidgetState createState() => _RecuperarSenhaWidgetState();
+  _TelaSenhaRecuperarWidgetState createState() =>
+      _TelaSenhaRecuperarWidgetState();
 }
 
-class _RecuperarSenhaWidgetState extends State<RecuperarSenhaWidget> {
-  late RecuperarSenhaModel _model;
+class _TelaSenhaRecuperarWidgetState extends State<TelaSenhaRecuperarWidget> {
+  late TelaSenhaRecuperarModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RecuperarSenhaModel());
+    _model = createModel(context, () => TelaSenhaRecuperarModel());
 
     _model.emailAddressController ??= TextEditingController();
   }

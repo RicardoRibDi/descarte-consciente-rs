@@ -3,6 +3,7 @@ import '/components/reenviar_email/reenviar_email_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -50,10 +51,10 @@ class _TelaDeLoginWidgetState extends State<TelaDeLoginWidget> {
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).primary,
+              color: FlutterFlowTheme.of(context).primaryBackground,
               shape: BoxShape.rectangle,
               border: Border.all(
-                color: FlutterFlowTheme.of(context).primary,
+                color: FlutterFlowTheme.of(context).primaryBackground,
               ),
             ),
             alignment: AlignmentDirectional(0.0, 0.0),
@@ -80,10 +81,10 @@ class _TelaDeLoginWidgetState extends State<TelaDeLoginWidget> {
                       width: double.infinity,
                       height: 50.0,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: FlutterFlowTheme.of(context).primaryBackground,
                         borderRadius: BorderRadius.circular(25.0),
                         border: Border.all(
-                          color: FlutterFlowTheme.of(context).alternate,
+                          color: FlutterFlowTheme.of(context).secondaryText,
                         ),
                       ),
                       child: Padding(
@@ -91,6 +92,11 @@ class _TelaDeLoginWidgetState extends State<TelaDeLoginWidget> {
                             12.0, 0.0, 20.0, 0.0),
                         child: TextFormField(
                           controller: _model.textFieldEmailController,
+                          onChanged: (_) => EasyDebounce.debounce(
+                            '_model.textFieldEmailController',
+                            Duration(milliseconds: 200),
+                            () => setState(() {}),
+                          ),
                           obscureText: false,
                           decoration: InputDecoration(
                             labelStyle: FlutterFlowTheme.of(context)
@@ -169,10 +175,10 @@ class _TelaDeLoginWidgetState extends State<TelaDeLoginWidget> {
                       width: double.infinity,
                       height: 50.0,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: FlutterFlowTheme.of(context).primaryBackground,
                         borderRadius: BorderRadius.circular(25.0),
                         border: Border.all(
-                          color: FlutterFlowTheme.of(context).alternate,
+                          color: FlutterFlowTheme.of(context).secondaryText,
                         ),
                       ),
                       child: Padding(
@@ -180,6 +186,11 @@ class _TelaDeLoginWidgetState extends State<TelaDeLoginWidget> {
                             12.0, 0.0, 20.0, 0.0),
                         child: TextFormField(
                           controller: _model.textFieldSenhaController,
+                          onChanged: (_) => EasyDebounce.debounce(
+                            '_model.textFieldSenhaController',
+                            Duration(milliseconds: 200),
+                            () => setState(() {}),
+                          ),
                           obscureText: !_model.textFieldSenhaVisibility,
                           decoration: InputDecoration(
                             labelStyle: FlutterFlowTheme.of(context)
@@ -272,7 +283,7 @@ class _TelaDeLoginWidgetState extends State<TelaDeLoginWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 45.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          context.pushNamed('recuperarSenha');
+                          context.pushNamed('telaSenhaRecuperar');
                         },
                         text: 'Esqueci minha senha',
                         options: FFButtonOptions(
@@ -282,7 +293,7 @@ class _TelaDeLoginWidgetState extends State<TelaDeLoginWidget> {
                               0.0, 0.0, 0.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
