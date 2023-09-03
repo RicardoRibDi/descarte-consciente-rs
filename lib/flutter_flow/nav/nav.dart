@@ -77,16 +77,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? TelaPrincipalWidget()
-          : TelaDeLoginWidget(),
+      errorBuilder: (context, state) =>
+          appStateNotifier.loggedIn ? NavBarPage() : TelaDeLoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? TelaPrincipalWidget()
-              : TelaDeLoginWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? NavBarPage() : TelaDeLoginWidget(),
         ),
         FFRoute(
           name: 'telaDeLogin',
@@ -99,25 +97,30 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => TelaDeCadastroWidget(),
         ),
         FFRoute(
-          name: 'recuperarSenha',
-          path: '/recuperarSenha',
-          builder: (context, params) => RecuperarSenhaWidget(),
+          name: 'telaSenhaRecuperar',
+          path: '/telaSenhaRecuperar',
+          builder: (context, params) => TelaSenhaRecuperarWidget(),
         ),
         FFRoute(
-          name: 'meuPerfil',
-          path: '/meuPerfil',
-          builder: (context, params) => MeuPerfilWidget(),
+          name: 'telaPerfil',
+          path: '/telaPerfil',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'telaPerfil')
+              : NavBarPage(
+                  initialPage: 'telaPerfil',
+                  page: TelaPerfilWidget(),
+                ),
         ),
         FFRoute(
-          name: 'editarPerfil',
-          path: '/editarPerfil',
+          name: 'telaPerfilEditar',
+          path: '/telaPerfilEditar',
           asyncParams: {
             'tipoDeUsuario': getDoc(['usuarios'], UsuariosRecord.fromSnapshot),
             'nome': getDoc(['usuarios'], UsuariosRecord.fromSnapshot),
             'telefone': getDoc(['usuarios'], UsuariosRecord.fromSnapshot),
             'endereco': getDoc(['usuarios'], UsuariosRecord.fromSnapshot),
           },
-          builder: (context, params) => EditarPerfilWidget(
+          builder: (context, params) => TelaPerfilEditarWidget(
             email: params.getParam(
                 'email', ParamType.DocumentReference, false, ['usuarios']),
             tipoDeUsuario: params.getParam('tipoDeUsuario', ParamType.Document),
@@ -129,12 +132,43 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'telaPrincipal',
           path: '/telaPrincipal',
-          builder: (context, params) => TelaPrincipalWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'telaPrincipal')
+              : NavBarPage(
+                  initialPage: 'telaPrincipal',
+                  page: TelaPrincipalWidget(),
+                ),
         ),
         FFRoute(
-          name: 'mudarSenha',
-          path: '/mudarSenha',
-          builder: (context, params) => MudarSenhaWidget(),
+          name: 'telaSenhaMudar',
+          path: '/telaSenhaMudar',
+          builder: (context, params) => TelaSenhaMudarWidget(),
+        ),
+        FFRoute(
+          name: 'telaDoacoes',
+          path: '/telaDoacoes',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'telaDoacoes')
+              : TelaDoacoesWidget(),
+        ),
+        FFRoute(
+          name: 'telaDoacoesCadastro',
+          path: '/telaDoacoesCadastro',
+          builder: (context, params) => TelaDoacoesCadastroWidget(),
+        ),
+        FFRoute(
+          name: 'telaDoacoesGerenciar',
+          path: '/telaDoacoesGerenciar',
+          builder: (context, params) => TelaDoacoesGerenciarWidget(),
+        ),
+        FFRoute(
+          name: 'telaDoacoesDetalhes',
+          path: '/telaDoacoesDetalhes',
+          builder: (context, params) => TelaDoacoesDetalhesWidget(
+            nome: params.getParam('nome', ParamType.String),
+            nomeItem: params.getParam('nomeItem', ParamType.String),
+            itemDescricao: params.getParam('itemDescricao', ParamType.String),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

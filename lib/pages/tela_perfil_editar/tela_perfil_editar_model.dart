@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
-class EditarPerfilModel extends FlutterFlowModel {
+class TelaPerfilEditarModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

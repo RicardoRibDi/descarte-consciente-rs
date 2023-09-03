@@ -695,6 +695,7 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
                                     nome: _model.nomeController.text,
                                     endereco: _model.enderecoController.text,
                                     telefone: _model.telefoneController.text,
+                                    tipoDeUsuario: 'Comum',
                                   ));
 
                               await authManager.sendEmailVerification();
