@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -6,18 +5,18 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'reenviar_email_model.dart';
-export 'reenviar_email_model.dart';
+import 'excluir_doacao_model.dart';
+export 'excluir_doacao_model.dart';
 
-class ReenviarEmailWidget extends StatefulWidget {
-  const ReenviarEmailWidget({Key? key}) : super(key: key);
+class ExcluirDoacaoWidget extends StatefulWidget {
+  const ExcluirDoacaoWidget({Key? key}) : super(key: key);
 
   @override
-  _ReenviarEmailWidgetState createState() => _ReenviarEmailWidgetState();
+  _ExcluirDoacaoWidgetState createState() => _ExcluirDoacaoWidgetState();
 }
 
-class _ReenviarEmailWidgetState extends State<ReenviarEmailWidget> {
-  late ReenviarEmailModel _model;
+class _ExcluirDoacaoWidgetState extends State<ExcluirDoacaoWidget> {
+  late ExcluirDoacaoModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -28,7 +27,7 @@ class _ReenviarEmailWidgetState extends State<ReenviarEmailWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ReenviarEmailModel());
+    _model = createModel(context, () => ExcluirDoacaoModel());
   }
 
   @override
@@ -50,7 +49,7 @@ class _ReenviarEmailWidgetState extends State<ReenviarEmailWidget> {
             maxWidth: 570.0,
           ),
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).secondaryBackground,
+            color: FlutterFlowTheme.of(context).primaryBackground,
             borderRadius: BorderRadius.circular(12.0),
             border: Border.all(
               color: Color(0xFFE0E3E7),
@@ -70,7 +69,7 @@ class _ReenviarEmailWidgetState extends State<ReenviarEmailWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                         child: Text(
-                          'Aviso',
+                          'Atenção!',
                           style: FlutterFlowTheme.of(context).headlineMedium,
                         ),
                       ),
@@ -98,33 +97,20 @@ class _ReenviarEmailWidgetState extends State<ReenviarEmailWidget> {
                   color: FlutterFlowTheme.of(context).primaryBackground,
                 ),
                 Text(
-                  'Caso já tenha se cadastrado e não consegue acessar, é necessário que acesse o seu e-mail e verifique sua conta pelo link enviado no momento do cadastro. Para que seja enviado novamente, clique em \"Reenviar\"',
+                  'Remover a doação é um processo irrevesível, tem certeza que deseja fazer isso?',
                   style: FlutterFlowTheme.of(context).labelMedium,
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: Text(
-                          'Caso já tenha verificado, tente entrar novamente!',
-                          textAlign: TextAlign.start,
-                          style:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.of(context).error,
-                                  ),
-                        ),
-                      ),
                       FFButtonWidget(
                         onPressed: () async {
-                          await authManager.sendEmailVerification();
-                          Navigator.pop(context);
+                          Navigator.pop(context, true);
                         },
-                        text: 'Reenviar',
+                        text: 'Sim',
                         options: FFButtonOptions(
                           width: 130.0,
                           height: 40.0,
@@ -132,21 +118,46 @@ class _ReenviarEmailWidgetState extends State<ReenviarEmailWidget> {
                               0.0, 0.0, 0.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Lexend Deca',
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.of(context).success,
                                     fontSize: 12.0,
                                   ),
-                          elevation: 3.0,
+                          elevation: 0.0,
                           borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(50.0),
-                          hoverColor: Color(0xFF2B16ED),
-                          hoverTextColor: Colors.white,
+                        ),
+                      ),
+                      FFButtonWidget(
+                        onPressed: () async {
+                          Navigator.pop(context, false);
+                        },
+                        text: 'Não',
+                        options: FFButtonOptions(
+                          width: 130.0,
+                          height: 40.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: FlutterFlowTheme.of(context).error,
+                                    fontSize: 12.0,
+                                  ),
+                          elevation: 0.0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 0.0,
+                          ),
+                          borderRadius: BorderRadius.circular(50.0),
                         ),
                       ),
                     ],

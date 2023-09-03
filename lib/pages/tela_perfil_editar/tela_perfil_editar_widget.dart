@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-import 'editar_perfil_model.dart';
-export 'editar_perfil_model.dart';
+import 'tela_perfil_editar_model.dart';
+export 'tela_perfil_editar_model.dart';
 
-class EditarPerfilWidget extends StatefulWidget {
-  const EditarPerfilWidget({
+class TelaPerfilEditarWidget extends StatefulWidget {
+  const TelaPerfilEditarWidget({
     Key? key,
     this.email,
     this.tipoDeUsuario,
@@ -28,18 +28,18 @@ class EditarPerfilWidget extends StatefulWidget {
   final UsuariosRecord? endereco;
 
   @override
-  _EditarPerfilWidgetState createState() => _EditarPerfilWidgetState();
+  _TelaPerfilEditarWidgetState createState() => _TelaPerfilEditarWidgetState();
 }
 
-class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
-  late EditarPerfilModel _model;
+class _TelaPerfilEditarWidgetState extends State<TelaPerfilEditarWidget> {
+  late TelaPerfilEditarModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EditarPerfilModel());
+    _model = createModel(context, () => TelaPerfilEditarModel());
 
     _model.textController5 ??=
         TextEditingController(text: widget.endereco?.endereco);
@@ -74,7 +74,7 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
             ),
           );
         }
-        final editarPerfilUsuariosRecord = snapshot.data!;
+        final telaPerfilEditarUsuariosRecord = snapshot.data!;
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
           child: Scaffold(
@@ -132,7 +132,7 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                 child: TextFormField(
                                   controller: _model.textController1 ??=
                                       TextEditingController(
-                                    text: editarPerfilUsuariosRecord.email,
+                                    text: telaPerfilEditarUsuariosRecord.email,
                                   ),
                                   readOnly: true,
                                   obscureText: false,
@@ -214,7 +214,7 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                 child: TextFormField(
                                   controller: _model.textController2 ??=
                                       TextEditingController(
-                                    text: editarPerfilUsuariosRecord
+                                    text: telaPerfilEditarUsuariosRecord
                                         .tipoDeUsuario,
                                   ),
                                   readOnly: true,
@@ -296,7 +296,7 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                 child: TextFormField(
                                   controller: _model.textController3 ??=
                                       TextEditingController(
-                                    text: editarPerfilUsuariosRecord.nome,
+                                    text: telaPerfilEditarUsuariosRecord.nome,
                                   ),
                                   readOnly: true,
                                   obscureText: false,
@@ -377,7 +377,8 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                 child: TextFormField(
                                   controller: _model.textController4 ??=
                                       TextEditingController(
-                                    text: editarPerfilUsuariosRecord.telefone,
+                                    text:
+                                        telaPerfilEditarUsuariosRecord.telefone,
                                   ),
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -530,7 +531,7 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                               0.0, 20.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              await editarPerfilUsuariosRecord.reference
+                              await telaPerfilEditarUsuariosRecord.reference
                                   .update(createUsuariosRecordData(
                                 telefone: _model.textController4.text,
                                 endereco: _model.textController5.text,
@@ -552,7 +553,7 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                     fontFamily: 'Lexend Deca',
                                     color:
                                         FlutterFlowTheme.of(context).tertiary,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.normal,
                                   ),
                               elevation: 3.0,
                               borderSide: BorderSide(

@@ -9,19 +9,19 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'meu_perfil_model.dart';
-export 'meu_perfil_model.dart';
+import 'tela_perfil_model.dart';
+export 'tela_perfil_model.dart';
 
-class MeuPerfilWidget extends StatefulWidget {
-  const MeuPerfilWidget({Key? key}) : super(key: key);
+class TelaPerfilWidget extends StatefulWidget {
+  const TelaPerfilWidget({Key? key}) : super(key: key);
 
   @override
-  _MeuPerfilWidgetState createState() => _MeuPerfilWidgetState();
+  _TelaPerfilWidgetState createState() => _TelaPerfilWidgetState();
 }
 
-class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
+class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
     with TickerProviderStateMixin {
-  late MeuPerfilModel _model;
+  late TelaPerfilModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   var hasContainerTriggered1 = false;
@@ -58,7 +58,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => MeuPerfilModel());
+    _model = createModel(context, () => TelaPerfilModel());
 
     setupAnimations(
       animationsMap.values.where((anim) =>
@@ -97,7 +97,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
             ),
           );
         }
-        final meuPerfilUsuariosRecord = snapshot.data!;
+        final telaPerfilUsuariosRecord = snapshot.data!;
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
           child: Scaffold(
@@ -106,20 +106,6 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
             appBar: AppBar(
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
-              leading: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.pop();
-                },
-                child: Icon(
-                  Icons.chevron_left_rounded,
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  size: 32.0,
-                ),
-              ),
               title: Text(
                 'Meu Perfil',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -146,7 +132,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                         width: 350.0,
                         height: 100.0,
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primary,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
@@ -162,7 +148,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 0.0),
                                     child: Text(
-                                      meuPerfilUsuariosRecord.nome,
+                                      telaPerfilUsuariosRecord.nome,
                                       style: FlutterFlowTheme.of(context)
                                           .displaySmall
                                           .override(
@@ -182,7 +168,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 0.0, 0.0),
                                     child: Text(
-                                      meuPerfilUsuariosRecord.tipoDeUsuario,
+                                      telaPerfilUsuariosRecord.tipoDeUsuario,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -199,7 +185,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                     0.0, 4.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    meuPerfilUsuariosRecord.email,
+                                    telaPerfilUsuariosRecord.email,
                                     'No Email Associated with Account',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -207,7 +193,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                       .override(
                                         fontFamily: 'Lexend Deca',
                                         color: FlutterFlowTheme.of(context)
-                                            .secondary,
+                                            .secondaryText,
                                       ),
                                 ),
                               ),
@@ -308,7 +294,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .accent4,
+                                                      .secondaryText,
                                               boxShadow: [
                                                 BoxShadow(
                                                   blurRadius: 4.0,
@@ -356,8 +342,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                           child: Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                              color: FlutterFlowTheme.of(context).secondaryText,
                               boxShadow: [
                                 BoxShadow(
                                   blurRadius: 1.0,
@@ -376,15 +361,20 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                 children: [
                                   Text(
                                     'Ativar Modo Claro',
-                                    style:
-                                        FlutterFlowTheme.of(context).titleSmall,
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                        ),
                                   ),
                                   Container(
                                     width: 80.0,
                                     height: 40.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
+                                          .secondary,
                                       borderRadius: BorderRadius.circular(20.0),
                                     ),
                                     child: Stack(
@@ -401,7 +391,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                               Icons.wb_sunny_rounded,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .accent1,
+                                                      .secondaryText,
                                               size: 24.0,
                                             ),
                                           ),
@@ -415,7 +405,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                                      .secondaryText,
                                               boxShadow: [
                                                 BoxShadow(
                                                   blurRadius: 4.0,
@@ -447,6 +437,76 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 2.0),
+                            child: Container(
+                              width: MediaQuery.sizeOf(context).width * 1.0,
+                              height: 60.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color:
+                                        FlutterFlowTheme.of(context).background,
+                                    offset: Offset(0.0, 1.0),
+                                  )
+                                ],
+                                shape: BoxShape.rectangle,
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed('telaDoacoesGerenciar');
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Gerenciar Doações',
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                            ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(0.9, 0.0),
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 18.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
@@ -529,35 +589,35 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     context.pushNamed(
-                                      'editarPerfil',
+                                      'telaPerfilEditar',
                                       queryParameters: {
                                         'email': serializeParam(
-                                          meuPerfilUsuariosRecord.reference,
+                                          telaPerfilUsuariosRecord.reference,
                                           ParamType.DocumentReference,
                                         ),
                                         'tipoDeUsuario': serializeParam(
-                                          meuPerfilUsuariosRecord,
+                                          telaPerfilUsuariosRecord,
                                           ParamType.Document,
                                         ),
                                         'nome': serializeParam(
-                                          meuPerfilUsuariosRecord,
+                                          telaPerfilUsuariosRecord,
                                           ParamType.Document,
                                         ),
                                         'telefone': serializeParam(
-                                          meuPerfilUsuariosRecord,
+                                          telaPerfilUsuariosRecord,
                                           ParamType.Document,
                                         ),
                                         'endereco': serializeParam(
-                                          meuPerfilUsuariosRecord,
+                                          telaPerfilUsuariosRecord,
                                           ParamType.Document,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
                                         'tipoDeUsuario':
-                                            meuPerfilUsuariosRecord,
-                                        'nome': meuPerfilUsuariosRecord,
-                                        'telefone': meuPerfilUsuariosRecord,
-                                        'endereco': meuPerfilUsuariosRecord,
+                                            telaPerfilUsuariosRecord,
+                                        'nome': telaPerfilUsuariosRecord,
+                                        'telefone': telaPerfilUsuariosRecord,
+                                        'endereco': telaPerfilUsuariosRecord,
                                       },
                                     );
                                   },
@@ -626,7 +686,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('mudarSenha');
+                                  context.pushNamed('telaSenhaMudar');
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -697,6 +757,7 @@ class _MeuPerfilWidgetState extends State<MeuPerfilWidget>
                                       fontFamily: 'Lexend Deca',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
+                                      fontSize: 16.0,
                                     ),
                                 elevation: 3.0,
                                 borderSide: BorderSide(
