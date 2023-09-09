@@ -57,7 +57,7 @@ class _TelaDeLoginWidgetState extends State<TelaDeLoginWidget> {
                 color: FlutterFlowTheme.of(context).primaryBackground,
               ),
             ),
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.00, 0.00),
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 80.0),
               child: Column(
@@ -277,7 +277,7 @@ class _TelaDeLoginWidgetState extends State<TelaDeLoginWidget> {
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(1.0, -1.0),
+                    alignment: AlignmentDirectional(1.00, -1.00),
                     child: Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 45.0, 0.0),

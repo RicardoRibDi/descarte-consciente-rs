@@ -169,6 +169,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             nomeItem: params.getParam('nomeItem', ParamType.String),
             itemDescricao: params.getParam('itemDescricao', ParamType.String),
           ),
+        ),
+        FFRoute(
+          name: 'telaProprietarioRequisitar',
+          path: '/telaProprietarioRequisitar',
+          builder: (context, params) => TelaProprietarioRequisitarWidget(),
+        ),
+        FFRoute(
+          name: 'telaProprietarioRequisitarCompleto',
+          path: '/telaProprietarioRequisitarCompleto',
+          builder: (context, params) =>
+              TelaProprietarioRequisitarCompletoWidget(),
+        ),
+        FFRoute(
+          name: 'telaProprietarioEditDescarte',
+          path: '/telaProprietarioEditDescarte',
+          builder: (context, params) => TelaProprietarioEditDescarteWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
