@@ -76,7 +76,7 @@ class _TelaDoacoesCadastroWidgetState extends State<TelaDoacoesCadastroWidget> {
           elevation: 0.0,
         ),
         body: Align(
-          alignment: AlignmentDirectional(0.0, 0.0),
+          alignment: AlignmentDirectional(0.00, 0.00),
           child: Material(
             color: Colors.transparent,
             elevation: 0.0,
@@ -110,7 +110,7 @@ class _TelaDoacoesCadastroWidgetState extends State<TelaDoacoesCadastroWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.00, 0.00),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             40.0, 0.0, 40.0, 12.0),
@@ -194,7 +194,7 @@ class _TelaDoacoesCadastroWidgetState extends State<TelaDoacoesCadastroWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.00, 0.00),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             40.0, 0.0, 40.0, 12.0),

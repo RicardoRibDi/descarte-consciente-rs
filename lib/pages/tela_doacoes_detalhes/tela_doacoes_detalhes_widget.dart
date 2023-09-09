@@ -103,7 +103,7 @@ class _TelaDoacoesDetalhesWidgetState extends State<TelaDoacoesDetalhesWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.00, 0.00),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 8.0, 8.0, 8.0),
@@ -145,7 +145,7 @@ class _TelaDoacoesDetalhesWidgetState extends State<TelaDoacoesDetalhesWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.00, 0.00),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 8.0, 8.0, 8.0),
@@ -187,7 +187,7 @@ class _TelaDoacoesDetalhesWidgetState extends State<TelaDoacoesDetalhesWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.00, 0.00),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 8.0, 8.0, 8.0),
@@ -212,7 +212,7 @@ class _TelaDoacoesDetalhesWidgetState extends State<TelaDoacoesDetalhesWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.00, 0.00),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 8.0, 8.0, 8.0),

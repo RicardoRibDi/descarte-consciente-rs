@@ -24,6 +24,7 @@ export 'package:intl/intl.dart';
 export 'package:cloud_firestore/cloud_firestore.dart'
     show DocumentReference, FirebaseFirestore;
 export 'package:page_transition/page_transition.dart';
+export 'custom_icons.dart' show FFIcons;
 export 'nav/nav.dart';
 
 T valueOrDefault<T>(T? value, T defaultValue) =>
@@ -286,4 +287,8 @@ extension ListDivideExt<T extends Widget> on Iterable<T> {
 
   List<Widget> addToEnd(Widget t) =>
       enumerate.map((e) => e.value).toList()..add(t);
+
+  List<Padding> paddingTopEach(double val) =>
+      map((w) => Padding(padding: EdgeInsets.only(top: val), child: w))
+          .toList();
 }
