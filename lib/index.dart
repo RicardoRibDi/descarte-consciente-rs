@@ -18,3 +18,9 @@ export '/pages/tela_doacoes_gerenciar/tela_doacoes_gerenciar_widget.dart'
     show TelaDoacoesGerenciarWidget;
 export '/pages/tela_doacoes_detalhes/tela_doacoes_detalhes_widget.dart'
     show TelaDoacoesDetalhesWidget;
+export '/pages/tela_proprietario_requisitar/tela_proprietario_requisitar_widget.dart'
+    show TelaProprietarioRequisitarWidget;
+export '/pages/tela_proprietario_requisitar_completo/tela_proprietario_requisitar_completo_widget.dart'
+    show TelaProprietarioRequisitarCompletoWidget;
+export '/pages/tela_proprietario_edit_descarte/tela_proprietario_edit_descarte_widget.dart'
+    show TelaProprietarioEditDescarteWidget;

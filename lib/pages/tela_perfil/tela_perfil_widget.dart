@@ -135,7 +135,7 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
                           color: FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         child: Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: AlignmentDirectional(0.00, 0.00),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -271,7 +271,7 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
                                       children: [
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(0.95, 0.0),
+                                              AlignmentDirectional(0.95, 0.00),
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
@@ -287,7 +287,7 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-0.85, 0.0),
+                                              AlignmentDirectional(-0.85, 0.00),
                                           child: Container(
                                             width: 36.0,
                                             height: 36.0,
@@ -382,7 +382,7 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
                                       children: [
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-0.9, 0.0),
+                                              AlignmentDirectional(-0.90, 0.00),
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
@@ -398,7 +398,7 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(0.9, 0.0),
+                                              AlignmentDirectional(0.90, 0.00),
                                           child: Container(
                                             width: 36.0,
                                             height: 36.0,
@@ -461,45 +461,53 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
                                 ],
                                 shape: BoxShape.rectangle,
                               ),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed('telaDoacoesGerenciar');
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        'Gerenciar Doações',
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                            ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.9, 0.0),
-                                        child: Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 18.0,
+                              child: Align(
+                                alignment: AlignmentDirectional(0.00, 0.00),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed('telaDoacoesGerenciar');
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Gerenciar Doações',
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleSmall
+                                              .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(0.00, 0.00),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 20.0, 0.0),
+                                          child: Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 18.0,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -528,7 +536,7 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
                           children: [
                             Expanded(
                               child: Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.00, 0.00),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 16.0),
@@ -623,6 +631,8 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -639,10 +649,13 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
                                               ),
                                         ),
                                       ),
-                                      Expanded(
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.9, 0.0),
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(0.90, 0.00),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 20.0, 0.0),
                                           child: Icon(
                                             Icons.arrow_forward_ios,
                                             color: FlutterFlowTheme.of(context)
@@ -659,6 +672,81 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
                           ],
                         ),
                       ),
+                      if (telaPerfilUsuariosRecord.tipoDeUsuario ==
+                          'Proprietário')
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 1.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: 60.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: FlutterFlowTheme.of(context)
+                                          .background,
+                                      offset: Offset(0.0, 1.0),
+                                    )
+                                  ],
+                                  shape: BoxShape.rectangle,
+                                ),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                        'telaProprietarioEditDescarte');
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Editar Local de Descarte',
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleSmall
+                                              .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                              ),
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(0.90, 0.00),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 20.0, 0.0),
+                                          child: Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 18.0,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
@@ -690,6 +778,8 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -706,10 +796,12 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
                                             ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.9, 0.0),
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(0.90, 0.00),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 20.0, 0.0),
                                         child: Icon(
                                           Icons.arrow_forward_ios,
                                           color: FlutterFlowTheme.of(context)
@@ -725,6 +817,200 @@ class _TelaPerfilWidgetState extends State<TelaPerfilWidget>
                           ],
                         ),
                       ),
+                      if (valueOrDefault<bool>(
+                              currentUserDocument?.analiseProprietario,
+                              false) !=
+                          true)
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 1.0, 0.0, 0.0),
+                          child: AuthUserStreamWidget(
+                            builder: (context) => Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Container(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  height: 60.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: FlutterFlowTheme.of(context)
+                                            .background,
+                                        offset: Offset(0.0, 1.0),
+                                      )
+                                    ],
+                                    shape: BoxShape.rectangle,
+                                  ),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed(
+                                          'telaProprietarioRequisitar');
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Solicitar Usuário Proprietário',
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleSmall
+                                                .override(
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(0.90, 0.00),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 20.0, 0.0),
+                                            child: Icon(
+                                              Icons.arrow_forward_ios,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 18.0,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      if (valueOrDefault<bool>(
+                              currentUserDocument?.analiseProprietario,
+                              false) ==
+                          true)
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 1.0, 0.0, 0.0),
+                          child: AuthUserStreamWidget(
+                            builder: (context) => Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Container(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  height: 65.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: FlutterFlowTheme.of(context)
+                                            .background,
+                                        offset: Offset(0.0, 1.0),
+                                      )
+                                    ],
+                                    shape: BoxShape.rectangle,
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Solicitar Usuário Proprietário',
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleSmall
+                                              .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .accent4,
+                                              ),
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(0.90, 0.00),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 20.0, 0.0),
+                                          child: Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent4,
+                                            size: 18.0,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      if ((valueOrDefault(
+                                  currentUserDocument?.tipoDeUsuario, '') ==
+                              'Comum') &&
+                          (valueOrDefault<bool>(
+                                  currentUserDocument?.analiseProprietario,
+                                  false) ==
+                              true))
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 20.0, 0.0),
+                          child: AuthUserStreamWidget(
+                            builder: (context) => Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 0.0, 0.0),
+                                  child: Icon(
+                                    Icons.warning,
+                                    color: FlutterFlowTheme.of(context).error,
+                                    size: 24.0,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Sua solicitação de proprietário está sendo analisada!',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Lexend Deca',
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            fontSize: 13.0,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),

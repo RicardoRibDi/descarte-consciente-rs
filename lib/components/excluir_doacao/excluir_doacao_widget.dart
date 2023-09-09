@@ -40,11 +40,10 @@ class _ExcluirDoacaoWidgetState extends State<ExcluirDoacaoWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.00, 0.00),
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
         child: Container(
-          height: 264.0,
           constraints: BoxConstraints(
             maxWidth: 570.0,
           ),
@@ -58,106 +57,128 @@ class _ExcluirDoacaoWidgetState extends State<ExcluirDoacaoWidget> {
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
             child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                        child: Text(
-                          'Atenção!',
-                          style: FlutterFlowTheme.of(context).headlineMedium,
+                Container(
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 12.0, 0.0),
+                          child: Text(
+                            'Atenção!',
+                            style: FlutterFlowTheme.of(context).headlineMedium,
+                          ),
                         ),
                       ),
-                    ),
-                    FlutterFlowIconButton(
-                      borderColor:
-                          FlutterFlowTheme.of(context).primaryBackground,
-                      borderRadius: 30.0,
-                      borderWidth: 2.0,
-                      buttonSize: 44.0,
-                      icon: Icon(
-                        Icons.close_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 24.0,
+                      FlutterFlowIconButton(
+                        borderColor:
+                            FlutterFlowTheme.of(context).primaryBackground,
+                        borderRadius: 30.0,
+                        borderWidth: 2.0,
+                        buttonSize: 44.0,
+                        icon: Icon(
+                          Icons.close_rounded,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          size: 24.0,
+                        ),
+                        onPressed: () async {
+                          Navigator.pop(context);
+                        },
                       ),
-                      onPressed: () async {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Divider(
                   height: 24.0,
                   thickness: 2.0,
                   color: FlutterFlowTheme.of(context).primaryBackground,
                 ),
-                Text(
-                  'Remover a doação é um processo irrevesível, tem certeza que deseja fazer isso?',
-                  style: FlutterFlowTheme.of(context).labelMedium,
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                  child: Row(
+                Container(
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                  child: Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      FFButtonWidget(
-                        onPressed: () async {
-                          Navigator.pop(context, true);
-                        },
-                        text: 'Sim',
-                        options: FFButtonOptions(
-                          width: 130.0,
-                          height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: FlutterFlowTheme.of(context).success,
-                                    fontSize: 12.0,
-                                  ),
-                          elevation: 0.0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
+                      Text(
+                        'Remover a doação é um processo irrevesível, tem certeza que deseja fazer isso?',
+                        style: FlutterFlowTheme.of(context).labelMedium,
                       ),
-                      FFButtonWidget(
-                        onPressed: () async {
-                          Navigator.pop(context, false);
-                        },
-                        text: 'Não',
-                        options: FFButtonOptions(
-                          width: 130.0,
-                          height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: FlutterFlowTheme.of(context).error,
-                                    fontSize: 12.0,
-                                  ),
-                          elevation: 0.0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 0.0,
-                          ),
-                          borderRadius: BorderRadius.circular(50.0),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            FFButtonWidget(
+                              onPressed: () async {
+                                Navigator.pop(context, true);
+                              },
+                              text: 'Sim',
+                              options: FFButtonOptions(
+                                width: 130.0,
+                                height: 40.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color:
+                                          FlutterFlowTheme.of(context).success,
+                                      fontSize: 12.0,
+                                    ),
+                                elevation: 0.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(50.0),
+                              ),
+                            ),
+                            FFButtonWidget(
+                              onPressed: () async {
+                                Navigator.pop(context, false);
+                              },
+                              text: 'Não',
+                              options: FFButtonOptions(
+                                width: 130.0,
+                                height: 40.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: FlutterFlowTheme.of(context).error,
+                                      fontSize: 12.0,
+                                    ),
+                                elevation: 0.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 0.0,
+                                ),
+                                borderRadius: BorderRadius.circular(50.0),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],

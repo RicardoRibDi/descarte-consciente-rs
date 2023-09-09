@@ -9,6 +9,7 @@ import 'schema/usuarios_record.dart';
 import 'schema/chats_record.dart';
 import 'schema/chat_messages_record.dart';
 import 'schema/doacao_record.dart';
+import 'schema/local_descarte_record.dart';
 import 'dart:async';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -22,6 +23,7 @@ export 'schema/usuarios_record.dart';
 export 'schema/chats_record.dart';
 export 'schema/chat_messages_record.dart';
 export 'schema/doacao_record.dart';
+export 'schema/local_descarte_record.dart';
 
 /// Functions to query UsuariosRecords (as a Stream and as a Future).
 Future<int> queryUsuariosRecordCount({
@@ -335,6 +337,84 @@ Future<FFFirestorePage<DoacaoRecord>> queryDoacaoRecordPage({
       return page;
     });
 
+/// Functions to query LocalDescarteRecords (as a Stream and as a Future).
+Future<int> queryLocalDescarteRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      LocalDescarteRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<LocalDescarteRecord>> queryLocalDescarteRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      LocalDescarteRecord.collection,
+      LocalDescarteRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<LocalDescarteRecord>> queryLocalDescarteRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      LocalDescarteRecord.collection,
+      LocalDescarteRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+Future<FFFirestorePage<LocalDescarteRecord>> queryLocalDescarteRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+  required PagingController<DocumentSnapshot?, LocalDescarteRecord> controller,
+  List<StreamSubscription?>? streamSubscriptions,
+}) =>
+    queryCollectionPage(
+      LocalDescarteRecord.collection,
+      LocalDescarteRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    ).then((page) {
+      controller.appendPage(
+        page.data,
+        page.nextPageMarker,
+      );
+      if (isStream) {
+        final streamSubscription =
+            (page.dataStream)?.listen((List<LocalDescarteRecord> data) {
+          data.forEach((item) {
+            final itemIndexes = controller.itemList!
+                .asMap()
+                .map((k, v) => MapEntry(v.reference.id, k));
+            final index = itemIndexes[item.reference.id];
+            final items = controller.itemList!;
+            if (index != null) {
+              items.replaceRange(index, index + 1, [item]);
+              controller.itemList = {
+                for (var item in items) item.reference: item
+              }.values.toList();
+            }
+          });
+        });
+        streamSubscriptions?.add(streamSubscription);
+      }
+      return page;
+    });
+
 Future<int> queryCollectionCount(
   Query collection, {
   Query Function(Query)? queryBuilder,
@@ -472,7 +552,8 @@ Future maybeCreateUser(User user) async {
 
   final userData = createUsuariosRecordData(
     email: user.email,
-    displayName: user.displayName,
+    displayName:
+        user.displayName ?? FirebaseAuth.instance.currentUser?.displayName,
     photoUrl: user.photoURL,
     uid: user.uid,
     phoneNumber: user.phoneNumber,
