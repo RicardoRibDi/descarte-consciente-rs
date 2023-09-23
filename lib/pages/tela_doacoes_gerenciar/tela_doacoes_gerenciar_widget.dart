@@ -271,8 +271,8 @@ class _TelaDoacoesGerenciarWidgetState
                                                     ),
                                                   );
                                                 },
-                                              ).then((value) => setState(() =>
-                                                  _model.excluirDoacao =
+                                              ).then((value) => safeSetState(
+                                                  () => _model.excluirDoacao =
                                                       value));
 
                                               if (_model.excluirDoacao ==

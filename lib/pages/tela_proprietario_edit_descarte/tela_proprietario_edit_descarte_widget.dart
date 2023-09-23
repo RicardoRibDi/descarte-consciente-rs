@@ -1179,7 +1179,7 @@ class _TelaProprietarioEditDescarteWidgetState
                                             ),
                                           );
                                         },
-                                      ).then((value) => setState(() =>
+                                      ).then((value) => safeSetState(() =>
                                           _model.excluirDescarte = value));
 
                                       if (_model.excluirDescarte == true) {

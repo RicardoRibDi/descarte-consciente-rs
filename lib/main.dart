@@ -128,9 +128,9 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'telaPrincipal': TelaPrincipalWidget(),
       'telaPerfil': TelaPerfilWidget(),
       'telaDoacoes': TelaDoacoesWidget(),
+      'telaPrincipal': TelaPrincipalWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -165,14 +165,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.home,
+                  Icons.person,
                   color: currentIndex == 0
                       ? FlutterFlowTheme.of(context).secondaryText
                       : FlutterFlowTheme.of(context).accent3,
                   size: 24.0,
                 ),
                 Text(
-                  'Home',
+                  'Perfil',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 0
@@ -189,14 +189,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.person,
+                  Icons.handshake_rounded,
                   color: currentIndex == 1
                       ? FlutterFlowTheme.of(context).secondaryText
                       : FlutterFlowTheme.of(context).accent3,
                   size: 24.0,
                 ),
                 Text(
-                  'Perfil',
+                  'Doações',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 1
@@ -213,14 +213,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.handshake_rounded,
+                  Icons.home,
                   color: currentIndex == 2
                       ? FlutterFlowTheme.of(context).secondaryText
                       : FlutterFlowTheme.of(context).accent3,
                   size: 24.0,
                 ),
                 Text(
-                  'Doações',
+                  'Home',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 2

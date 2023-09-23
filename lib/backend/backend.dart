@@ -10,6 +10,7 @@ import 'schema/chats_record.dart';
 import 'schema/chat_messages_record.dart';
 import 'schema/doacao_record.dart';
 import 'schema/local_descarte_record.dart';
+import 'schema/materiais_d_b_record.dart';
 import 'dart:async';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -24,6 +25,7 @@ export 'schema/chats_record.dart';
 export 'schema/chat_messages_record.dart';
 export 'schema/doacao_record.dart';
 export 'schema/local_descarte_record.dart';
+export 'schema/materiais_d_b_record.dart';
 
 /// Functions to query UsuariosRecords (as a Stream and as a Future).
 Future<int> queryUsuariosRecordCount({
@@ -396,6 +398,84 @@ Future<FFFirestorePage<LocalDescarteRecord>> queryLocalDescarteRecordPage({
       if (isStream) {
         final streamSubscription =
             (page.dataStream)?.listen((List<LocalDescarteRecord> data) {
+          data.forEach((item) {
+            final itemIndexes = controller.itemList!
+                .asMap()
+                .map((k, v) => MapEntry(v.reference.id, k));
+            final index = itemIndexes[item.reference.id];
+            final items = controller.itemList!;
+            if (index != null) {
+              items.replaceRange(index, index + 1, [item]);
+              controller.itemList = {
+                for (var item in items) item.reference: item
+              }.values.toList();
+            }
+          });
+        });
+        streamSubscriptions?.add(streamSubscription);
+      }
+      return page;
+    });
+
+/// Functions to query MateriaisDBRecords (as a Stream and as a Future).
+Future<int> queryMateriaisDBRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      MateriaisDBRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<MateriaisDBRecord>> queryMateriaisDBRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      MateriaisDBRecord.collection,
+      MateriaisDBRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<MateriaisDBRecord>> queryMateriaisDBRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      MateriaisDBRecord.collection,
+      MateriaisDBRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+Future<FFFirestorePage<MateriaisDBRecord>> queryMateriaisDBRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+  required PagingController<DocumentSnapshot?, MateriaisDBRecord> controller,
+  List<StreamSubscription?>? streamSubscriptions,
+}) =>
+    queryCollectionPage(
+      MateriaisDBRecord.collection,
+      MateriaisDBRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    ).then((page) {
+      controller.appendPage(
+        page.data,
+        page.nextPageMarker,
+      );
+      if (isStream) {
+        final streamSubscription =
+            (page.dataStream)?.listen((List<MateriaisDBRecord> data) {
           data.forEach((item) {
             final itemIndexes = controller.itemList!
                 .asMap()

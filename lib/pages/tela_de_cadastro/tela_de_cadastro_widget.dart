@@ -1,8 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/place.dart';
+import 'dart:io';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,7 +34,6 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
     _model.nomeController ??= TextEditingController();
     _model.emailController ??= TextEditingController();
     _model.telefoneController ??= TextEditingController();
-    _model.enderecoController ??= TextEditingController();
     _model.senhaController ??= TextEditingController();
     _model.confirmarSenhaController ??= TextEditingController();
   }
@@ -390,66 +392,43 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   12.0, 0.0, 20.0, 0.0),
-                              child: TextFormField(
-                                controller: _model.enderecoController,
-                                onChanged: (_) => EasyDebounce.debounce(
-                                  '_model.enderecoController',
-                                  Duration(milliseconds: 200),
-                                  () => setState(() {}),
+                              child: FlutterFlowPlacePicker(
+                                iOSGoogleMapsApiKey:
+                                    'AIzaSyA1Bq8-bAvu_3W9KdD-5zzD4dq8xSCq-Mg',
+                                androidGoogleMapsApiKey:
+                                    'AIzaSyCz2ol8rNQd1rTOuN9Nqd80CKvYcHm4i18',
+                                webGoogleMapsApiKey:
+                                    'AIzaSyBNxTK-Xf4-VgevOTQfLG6XjPoQVZLpMDI',
+                                onSelect: (place) async {
+                                  setState(() => _model.localValue = place);
+                                },
+                                defaultText: 'Endereço',
+                                icon: Icon(
+                                  Icons.place,
+                                  color: FlutterFlowTheme.of(context).info,
+                                  size: 16.0,
                                 ),
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Endereço*',
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
+                                buttonOptions: FFButtonOptions(
+                                  width: 200.0,
+                                  height: 40.0,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
                                       .override(
                                         fontFamily: 'Lexend Deca',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
+                                        color:
+                                            FlutterFlowTheme.of(context).info,
+                                        fontSize: 14.0,
                                       ),
-                                  hintText: 'Endereço*',
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(30.0),
+                                  elevation: 0.0,
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    width: 1.0,
                                   ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                          FlutterFlowTheme.of(context).success,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(30.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(30.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(30.0),
-                                  ),
+                                  borderRadius: BorderRadius.circular(30.0),
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                validator: _model.enderecoControllerValidator
-                                    .asValidator(context),
                               ),
                             ),
                           ),
@@ -663,8 +642,8 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
                                     _model.emailController.text == '') ||
                                 (_model.telefoneController.text == null ||
                                     _model.telefoneController.text == '') ||
-                                (_model.enderecoController.text == null ||
-                                    _model.enderecoController.text == '') ||
+                                (_model.localValue.address == null ||
+                                    _model.localValue.address == '') ||
                                 (_model.senhaController.text == null ||
                                     _model.senhaController.text == '') ||
                                 (_model.confirmarSenhaController.text == null ||
@@ -700,9 +679,10 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
                                       email: _model.emailController.text,
                                       senha: _model.senhaController.text,
                                       nome: _model.nomeController.text,
-                                      endereco: _model.enderecoController.text,
+                                      endereco: _model.localValue.address,
                                       telefone: _model.telefoneController.text,
                                       tipoDeUsuario: 'Comum',
+                                      localizacao: _model.localValue.latLng,
                                     ));
 
                                 await authManager.sendEmailVerification();

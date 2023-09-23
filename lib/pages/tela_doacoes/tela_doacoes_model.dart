@@ -1,5 +1,5 @@
 import '/backend/backend.dart';
-import '/components/lista_vazia/lista_vazia_widget.dart';
+import '/components/lista_vazia_doacao/lista_vazia_doacao_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';

@@ -1,8 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/place.dart';
+import 'dart:io';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,9 +26,8 @@ class TelaDeCadastroModel extends FlutterFlowModel {
   TextEditingController? telefoneController;
   final telefoneMask = MaskTextInputFormatter(mask: '+55 (##) #####-####');
   String? Function(BuildContext, String?)? telefoneControllerValidator;
-  // State field(s) for endereco widget.
-  TextEditingController? enderecoController;
-  String? Function(BuildContext, String?)? enderecoControllerValidator;
+  // State field(s) for local widget.
+  var localValue = FFPlace();
   // State field(s) for senha widget.
   TextEditingController? senhaController;
   late bool senhaVisibility;
@@ -47,7 +49,6 @@ class TelaDeCadastroModel extends FlutterFlowModel {
     nomeController?.dispose();
     emailController?.dispose();
     telefoneController?.dispose();
-    enderecoController?.dispose();
     senhaController?.dispose();
     confirmarSenhaController?.dispose();
   }

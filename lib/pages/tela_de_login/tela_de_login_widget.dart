@@ -343,7 +343,7 @@ class _TelaDeLoginWidgetState extends State<TelaDeLoginWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        ).then((value) => safeSetState(() {}));
                       }
                     },
                     text: 'Entrar',
