@@ -24,3 +24,4 @@ export '/pages/tela_proprietario_requisitar_completo/tela_proprietario_requisita
     show TelaProprietarioRequisitarCompletoWidget;
 export '/pages/tela_proprietario_edit_descarte/tela_proprietario_edit_descarte_widget.dart'
     show TelaProprietarioEditDescarteWidget;
+export '/pages/tela_mapa/tela_mapa_widget.dart' show TelaMapaWidget;

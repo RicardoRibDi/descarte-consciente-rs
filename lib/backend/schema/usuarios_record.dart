@@ -76,6 +76,11 @@ class UsuariosRecord extends FirestoreRecord {
   bool get analiseProprietario => _analiseProprietario ?? false;
   bool hasAnaliseProprietario() => _analiseProprietario != null;
 
+  // "localizacao" field.
+  LatLng? _localizacao;
+  LatLng? get localizacao => _localizacao;
+  bool hasLocalizacao() => _localizacao != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _senha = snapshotData['senha'] as String?;
@@ -89,6 +94,7 @@ class UsuariosRecord extends FirestoreRecord {
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _analiseProprietario = snapshotData['analiseProprietario'] as bool?;
+    _localizacao = snapshotData['localizacao'] as LatLng?;
   }
 
   static CollectionReference get collection =>
@@ -138,6 +144,7 @@ Map<String, dynamic> createUsuariosRecordData({
   DateTime? createdTime,
   String? phoneNumber,
   bool? analiseProprietario,
+  LatLng? localizacao,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -153,6 +160,7 @@ Map<String, dynamic> createUsuariosRecordData({
       'created_time': createdTime,
       'phone_number': phoneNumber,
       'analiseProprietario': analiseProprietario,
+      'localizacao': localizacao,
     }.withoutNulls,
   );
 
@@ -175,7 +183,8 @@ class UsuariosRecordDocumentEquality implements Equality<UsuariosRecord> {
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
-        e1?.analiseProprietario == e2?.analiseProprietario;
+        e1?.analiseProprietario == e2?.analiseProprietario &&
+        e1?.localizacao == e2?.localizacao;
   }
 
   @override
@@ -191,7 +200,8 @@ class UsuariosRecordDocumentEquality implements Equality<UsuariosRecord> {
         e?.uid,
         e?.createdTime,
         e?.phoneNumber,
-        e?.analiseProprietario
+        e?.analiseProprietario,
+        e?.localizacao
       ]);
 
   @override
