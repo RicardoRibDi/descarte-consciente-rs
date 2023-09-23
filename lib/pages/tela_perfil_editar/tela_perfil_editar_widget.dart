@@ -1,8 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/place.dart';
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -458,6 +461,7 @@ class _TelaPerfilEditarWidgetState extends State<TelaPerfilEditarWidget> {
                                     20.0, 12.0, 20.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.textController5,
+                                  readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Endereço',
@@ -517,10 +521,59 @@ class _TelaPerfilEditarWidgetState extends State<TelaPerfilEditarWidget> {
                                       .override(
                                         fontFamily: 'Lexend Deca',
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
+                                            .accent4,
                                       ),
                                   validator: _model.textController5Validator
                                       .asValidator(context),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 12.0, 20.0, 0.0),
+                                child: FlutterFlowPlacePicker(
+                                  iOSGoogleMapsApiKey:
+                                      'AIzaSyA1Bq8-bAvu_3W9KdD-5zzD4dq8xSCq-Mg',
+                                  androidGoogleMapsApiKey:
+                                      'AIzaSyCz2ol8rNQd1rTOuN9Nqd80CKvYcHm4i18',
+                                  webGoogleMapsApiKey:
+                                      'AIzaSyBNxTK-Xf4-VgevOTQfLG6XjPoQVZLpMDI',
+                                  onSelect: (place) async {
+                                    setState(() => _model.localValue = place);
+                                  },
+                                  defaultText: 'Alterar Endereço',
+                                  icon: Icon(
+                                    Icons.place,
+                                    color: FlutterFlowTheme.of(context).info,
+                                    size: 16.0,
+                                  ),
+                                  buttonOptions: FFButtonOptions(
+                                    width: 200.0,
+                                    height: 40.0,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Lexend Deca',
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          fontSize: 14.0,
+                                        ),
+                                    elevation: 0.0,
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
                                 ),
                               ),
                             ),
@@ -531,11 +584,21 @@ class _TelaPerfilEditarWidgetState extends State<TelaPerfilEditarWidget> {
                               0.0, 20.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              await telaPerfilEditarUsuariosRecord.reference
-                                  .update(createUsuariosRecordData(
-                                telefone: _model.textController4.text,
-                                endereco: _model.textController5.text,
-                              ));
+                              if (_model.localValue.address == null ||
+                                  _model.localValue.address == '') {
+                                await telaPerfilEditarUsuariosRecord.reference
+                                    .update(createUsuariosRecordData(
+                                  telefone: _model.textController4.text,
+                                ));
+                              } else {
+                                await telaPerfilEditarUsuariosRecord.reference
+                                    .update(createUsuariosRecordData(
+                                  telefone: _model.textController4.text,
+                                  endereco: _model.localValue.address,
+                                  localizacao: _model.localValue.latLng,
+                                ));
+                              }
+
                               context.pop();
                             },
                             text: 'Salvar Mudanças',
@@ -561,6 +624,26 @@ class _TelaPerfilEditarWidgetState extends State<TelaPerfilEditarWidget> {
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(40.0),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional(0.00, 0.00),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                40.0, 0.0, 40.0, 12.0),
+                            child: Container(
+                              width: double.infinity,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                borderRadius: BorderRadius.circular(25.0),
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                ),
+                              ),
                             ),
                           ),
                         ),

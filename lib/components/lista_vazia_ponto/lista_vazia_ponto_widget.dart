@@ -3,18 +3,18 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'lista_vazia_model.dart';
-export 'lista_vazia_model.dart';
+import 'lista_vazia_ponto_model.dart';
+export 'lista_vazia_ponto_model.dart';
 
-class ListaVaziaWidget extends StatefulWidget {
-  const ListaVaziaWidget({Key? key}) : super(key: key);
+class ListaVaziaPontoWidget extends StatefulWidget {
+  const ListaVaziaPontoWidget({Key? key}) : super(key: key);
 
   @override
-  _ListaVaziaWidgetState createState() => _ListaVaziaWidgetState();
+  _ListaVaziaPontoWidgetState createState() => _ListaVaziaPontoWidgetState();
 }
 
-class _ListaVaziaWidgetState extends State<ListaVaziaWidget> {
-  late ListaVaziaModel _model;
+class _ListaVaziaPontoWidgetState extends State<ListaVaziaPontoWidget> {
+  late ListaVaziaPontoModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -25,7 +25,7 @@ class _ListaVaziaWidgetState extends State<ListaVaziaWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ListaVaziaModel());
+    _model = createModel(context, () => ListaVaziaPontoModel());
   }
 
   @override
@@ -68,7 +68,7 @@ class _ListaVaziaWidgetState extends State<ListaVaziaWidget> {
             children: [
               Expanded(
                 child: Text(
-                  'Parece que não há doações no momento.\n:(',
+                  'Parece que não há pontos de descarte que correspondem aos filtros selecionados.\n:(',
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Lexend Deca',

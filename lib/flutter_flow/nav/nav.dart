@@ -185,6 +185,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'telaProprietarioEditDescarte',
           path: '/telaProprietarioEditDescarte',
           builder: (context, params) => TelaProprietarioEditDescarteWidget(),
+        ),
+        FFRoute(
+          name: 'telaMapa',
+          path: '/telaMapa',
+          builder: (context, params) => TelaMapaWidget(
+            materialFiltro: params.getParam('materialFiltro', ParamType.String),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

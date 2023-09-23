@@ -1,8 +1,11 @@
-import '/flutter_flow/flutter_flow_choice_chips.dart';
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/place.dart';
+import 'dart:io';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -11,9 +14,26 @@ class TelaPrincipalModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for ChoiceChips widget.
-  List<String>? choiceChipsValues;
-  FormFieldController<List<String>>? choiceChipsValueController;
+  // State field(s) for local widget.
+  var localValue = FFPlace();
+  // State field(s) for CheckboxPlastico widget.
+  bool? checkboxPlasticoValue;
+  // State field(s) for CheckboxVidro widget.
+  bool? checkboxVidroValue;
+  // State field(s) for CheckboxPapel widget.
+  bool? checkboxPapelValue;
+  // State field(s) for CheckboxMadeira widget.
+  bool? checkboxMadeiraValue;
+  // State field(s) for CheckboxMetal widget.
+  bool? checkboxMetalValue;
+  // State field(s) for CheckboxCortante widget.
+  bool? checkboxCortanteValue;
+  // State field(s) for CheckboxLampada widget.
+  bool? checkboxLampadaValue;
+  // State field(s) for CheckboxEletronico widget.
+  bool? checkboxEletronicoValue;
+  // State field(s) for CheckboxBateria widget.
+  bool? checkboxBateriaValue;
 
   /// Initialization and disposal methods.
 
