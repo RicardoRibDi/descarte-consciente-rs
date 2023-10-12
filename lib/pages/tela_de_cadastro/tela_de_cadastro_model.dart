@@ -6,13 +6,14 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/place.dart';
 import 'dart:io';
+import 'tela_de_cadastro_widget.dart' show TelaDeCadastroWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
-class TelaDeCadastroModel extends FlutterFlowModel {
+class TelaDeCadastroModel extends FlutterFlowModel<TelaDeCadastroWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

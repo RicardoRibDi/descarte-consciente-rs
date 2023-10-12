@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 
 import '../../auth/base_auth_user_provider.dart';
@@ -191,6 +192,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/telaMapa',
           builder: (context, params) => TelaMapaWidget(
             materialFiltro: params.getParam('materialFiltro', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'telaDescarteDetalhes',
+          path: '/telaDescarteDetalhes',
+          builder: (context, params) => TelaDescarteDetalhesWidget(
+            descarteRef: params.getParam('descarteRef',
+                ParamType.DocumentReference, false, ['local_descarte']),
+          ),
+        ),
+        FFRoute(
+          name: 'telaDescarteAvaliar',
+          path: '/telaDescarteAvaliar',
+          builder: (context, params) => TelaDescarteAvaliarWidget(
+            descarteRef: params.getParam('descarteRef',
+                ParamType.DocumentReference, false, ['local_descarte']),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
@@ -418,4 +435,24 @@ class TransitionInfo {
   final Alignment? alignment;
 
   static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+}
+
+class RootPageContext {
+  const RootPageContext(this.isRootPage, [this.errorRoute]);
+  final bool isRootPage;
+  final String? errorRoute;
+
+  static bool isInactiveRootPage(BuildContext context) {
+    final rootPageContext = context.read<RootPageContext?>();
+    final isRootPage = rootPageContext?.isRootPage ?? false;
+    final location = GoRouter.of(context).location;
+    return isRootPage &&
+        location != '/' &&
+        location != rootPageContext?.errorRoute;
+  }
+
+  static Widget wrap(Widget child, {String? errorRoute}) => Provider.value(
+        value: RootPageContext(true, errorRoute),
+        child: child,
+      );
 }

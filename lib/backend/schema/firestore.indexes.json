@@ -1,3 +1,18 @@
 {
-  "indexes": []
+  "indexes": [
+    {
+      "collectionGroup": "avaliacoes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "local_descarte",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "data_criacao",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ]
 }
