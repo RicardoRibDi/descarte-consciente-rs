@@ -15,3 +15,27 @@ import '/auth/firebase_auth/auth_util.dart';
 bool? hasNoChats(List<ChatsRecord>? allChats) {
   return allChats?.isEmpty ?? true;
 }
+
+double? ratingSummary(
+  double totalRatings,
+  double rating,
+) {
+  if (totalRatings > 0) {
+    return (rating +
+            (totalRatings - rating) ~/ math.max((totalRatings ~/ 5), 1)) /
+        2;
+  } else {
+    return rating;
+  }
+}
+
+double ratingSummaryList(List<AvaliacoesRecord> rating) {
+  if (rating.isEmpty) {
+    return 0.0;
+  }
+  var ratingsSum = 0.0;
+  for (final comment in rating) {
+    ratingsSum += comment.avaliacao!;
+  }
+  return double.parse((ratingsSum / rating.length).toStringAsFixed(1));
+}

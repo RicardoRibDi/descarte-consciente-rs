@@ -63,7 +63,9 @@ class _TelaDoacoesGerenciarWidgetState
         }
         final telaDoacoesGerenciarUsuariosRecord = snapshot.data!;
         return GestureDetector(
-          onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+          onTap: () => _model.unfocusNode.canRequestFocus
+              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+              : FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -120,9 +122,10 @@ class _TelaDoacoesGerenciarWidgetState
                     child: StreamBuilder<List<DoacaoRecord>>(
                       stream: queryDoacaoRecord(
                         queryBuilder: (doacaoRecord) => doacaoRecord.where(
-                            'usuario',
-                            isEqualTo:
-                                telaDoacoesGerenciarUsuariosRecord.reference),
+                          'usuario',
+                          isEqualTo:
+                              telaDoacoesGerenciarUsuariosRecord.reference,
+                        ),
                       ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
@@ -258,10 +261,14 @@ class _TelaDoacoesGerenciarWidgetState
                                                 context: context,
                                                 builder: (context) {
                                                   return GestureDetector(
-                                                    onTap: () => FocusScope.of(
-                                                            context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode),
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
                                                     child: Padding(
                                                       padding: MediaQuery
                                                           .viewInsetsOf(

@@ -4,13 +4,14 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'tela_doacoes_widget.dart' show TelaDoacoesWidget;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
-class TelaDoacoesModel extends FlutterFlowModel {
+class TelaDoacoesModel extends FlutterFlowModel<TelaDoacoesWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
