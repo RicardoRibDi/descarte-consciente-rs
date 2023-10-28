@@ -9,6 +9,7 @@ import 'tela_proprietario_edit_descarte_widget.dart'
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -19,16 +20,20 @@ class TelaProprietarioEditDescarteModel
 
   final unfocusNode = FocusNode();
   // State field(s) for nomeLocal widget.
+  FocusNode? nomeLocalFocusNode1;
   TextEditingController? nomeLocalController1;
   String? Function(BuildContext, String?)? nomeLocalController1Validator;
   // State field(s) for nomeLocal widget.
+  FocusNode? nomeLocalFocusNode2;
   TextEditingController? nomeLocalController2;
   String? Function(BuildContext, String?)? nomeLocalController2Validator;
   // State field(s) for horarioAbertura widget.
+  FocusNode? horarioAberturaFocusNode;
   TextEditingController? horarioAberturaController;
   final horarioAberturaMask = MaskTextInputFormatter(mask: '##:##');
   String? Function(BuildContext, String?)? horarioAberturaControllerValidator;
   // State field(s) for horarioFechamento widget.
+  FocusNode? horarioFechamentoFocusNode;
   TextEditingController? horarioFechamentoController;
   final horarioFechamentoMask = MaskTextInputFormatter(mask: '##:##');
   String? Function(BuildContext, String?)? horarioFechamentoControllerValidator;
@@ -51,6 +56,7 @@ class TelaProprietarioEditDescarteModel
   // State field(s) for CheckboxBateria widget.
   bool? checkboxBateriaValue;
   // State field(s) for descricao widget.
+  FocusNode? descricaoFocusNode;
   TextEditingController? descricaoController;
   String? Function(BuildContext, String?)? descricaoControllerValidator;
   // Stores action output result for [Bottom Sheet - excluirDescarte] action in Button widget.
@@ -62,10 +68,19 @@ class TelaProprietarioEditDescarteModel
 
   void dispose() {
     unfocusNode.dispose();
+    nomeLocalFocusNode1?.dispose();
     nomeLocalController1?.dispose();
+
+    nomeLocalFocusNode2?.dispose();
     nomeLocalController2?.dispose();
+
+    horarioAberturaFocusNode?.dispose();
     horarioAberturaController?.dispose();
+
+    horarioFechamentoFocusNode?.dispose();
     horarioFechamentoController?.dispose();
+
+    descricaoFocusNode?.dispose();
     descricaoController?.dispose();
   }
 

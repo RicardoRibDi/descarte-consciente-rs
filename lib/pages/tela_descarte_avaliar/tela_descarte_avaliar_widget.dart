@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +35,8 @@ class _TelaDescarteAvaliarWidgetState extends State<TelaDescarteAvaliarWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TelaDescarteAvaliarModel());
+
+    _model.descricaoAvaliacaoFocusNode ??= FocusNode();
   }
 
   @override
@@ -45,6 +48,15 @@ class _TelaDescarteAvaliarWidgetState extends State<TelaDescarteAvaliarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -226,6 +238,8 @@ class _TelaDescarteAvaliarWidgetState extends State<TelaDescarteAvaliarWidget> {
                                                 text: containerAvaliacoesRecord
                                                     ?.comentario,
                                               ),
+                                              focusNode: _model
+                                                  .descricaoAvaliacaoFocusNode,
                                               onChanged: (_) =>
                                                   EasyDebounce.debounce(
                                                 '_model.descricaoAvaliacaoController',

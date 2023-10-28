@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +32,16 @@ class _TelaProprietarioEditDescarteWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => TelaProprietarioEditDescarteModel());
+
+    _model.nomeLocalFocusNode1 ??= FocusNode();
+
+    _model.nomeLocalFocusNode2 ??= FocusNode();
+
+    _model.horarioAberturaFocusNode ??= FocusNode();
+
+    _model.horarioFechamentoFocusNode ??= FocusNode();
+
+    _model.descricaoFocusNode ??= FocusNode();
   }
 
   @override
@@ -42,6 +53,15 @@ class _TelaProprietarioEditDescarteWidgetState
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return StreamBuilder<UsuariosRecord>(
       stream: UsuariosRecord.getDocument(currentUserReference!),
       builder: (context, snapshot) {
@@ -175,6 +195,7 @@ class _TelaProprietarioEditDescarteWidgetState
                                           text: containerLocalDescarteRecord
                                               ?.nomeLocal,
                                         ),
+                                        focusNode: _model.nomeLocalFocusNode1,
                                         onChanged: (_) => EasyDebounce.debounce(
                                           '_model.nomeLocalController1',
                                           Duration(milliseconds: 200),
@@ -279,6 +300,7 @@ class _TelaProprietarioEditDescarteWidgetState
                                           text: containerLocalDescarteRecord
                                               ?.endereco,
                                         ),
+                                        focusNode: _model.nomeLocalFocusNode2,
                                         onChanged: (_) => EasyDebounce.debounce(
                                           '_model.nomeLocalController2',
                                           Duration(milliseconds: 200),
@@ -401,6 +423,8 @@ class _TelaProprietarioEditDescarteWidgetState
                                                     containerLocalDescarteRecord
                                                         ?.horarioAbertura,
                                               ),
+                                              focusNode: _model
+                                                  .horarioAberturaFocusNode,
                                               onChanged: (_) =>
                                                   EasyDebounce.debounce(
                                                 '_model.horarioAberturaController',
@@ -508,6 +532,8 @@ class _TelaProprietarioEditDescarteWidgetState
                                                     containerLocalDescarteRecord
                                                         ?.horarioFechamento,
                                               ),
+                                              focusNode: _model
+                                                  .horarioFechamentoFocusNode,
                                               onChanged: (_) =>
                                                   EasyDebounce.debounce(
                                                 '_model.horarioFechamentoController',
@@ -1086,6 +1112,7 @@ class _TelaProprietarioEditDescarteWidgetState
                                           text: containerLocalDescarteRecord
                                               ?.descricao,
                                         ),
+                                        focusNode: _model.descricaoFocusNode,
                                         onChanged: (_) => EasyDebounce.debounce(
                                           '_model.descricaoController',
                                           Duration(milliseconds: 200),

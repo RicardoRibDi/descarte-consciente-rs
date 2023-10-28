@@ -129,8 +129,9 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'telaPerfil': TelaPerfilWidget(),
-      'telaDoacoes': TelaDoacoesWidget(),
       'telaPrincipal': TelaPrincipalWidget(),
+      'telaDoacoes': TelaDoacoesWidget(),
+      'telaChatLista': TelaChatListaWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -189,14 +190,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.handshake_rounded,
+                  Icons.home,
                   color: currentIndex == 1
                       ? FlutterFlowTheme.of(context).secondaryText
                       : FlutterFlowTheme.of(context).accent3,
                   size: 24.0,
                 ),
                 Text(
-                  'Doações',
+                  'Home',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 1
@@ -213,17 +214,41 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.home,
+                  Icons.handshake_rounded,
                   color: currentIndex == 2
                       ? FlutterFlowTheme.of(context).secondaryText
                       : FlutterFlowTheme.of(context).accent3,
                   size: 24.0,
                 ),
                 Text(
-                  'Home',
+                  'Doações',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 2
+                        ? FlutterFlowTheme.of(context).secondaryText
+                        : FlutterFlowTheme.of(context).accent3,
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.chat,
+                  color: currentIndex == 3
+                      ? FlutterFlowTheme.of(context).secondaryText
+                      : FlutterFlowTheme.of(context).accent3,
+                  size: 24.0,
+                ),
+                Text(
+                  'Chat',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 3
                         ? FlutterFlowTheme.of(context).secondaryText
                         : FlutterFlowTheme.of(context).accent3,
                     fontSize: 11.0,

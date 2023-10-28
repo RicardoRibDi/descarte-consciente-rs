@@ -1,24 +1,21 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/backend/backend.dart';
+import '/flutter_flow/chat/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'tela_mapa_widget.dart' show TelaMapaWidget;
+import 'tela_chat_widget.dart' show TelaChatWidget;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class TelaMapaModel extends FlutterFlowModel<TelaMapaWidget> {
-  ///  State fields for stateful widgets in this page.
-
-  final unfocusNode = FocusNode();
-
+class TelaChatModel extends FlutterFlowModel<TelaChatWidget> {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}
 
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 
   /// Action blocks are added here.
 

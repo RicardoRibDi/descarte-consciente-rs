@@ -16,51 +16,51 @@ class ChatsRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "usuarios" field.
-  List<DocumentReference>? _usuarios;
-  List<DocumentReference> get usuarios => _usuarios ?? const [];
-  bool hasUsuarios() => _usuarios != null;
+  // "users" field.
+  List<DocumentReference>? _users;
+  List<DocumentReference> get users => _users ?? const [];
+  bool hasUsers() => _users != null;
 
-  // "usuarioA" field.
-  DocumentReference? _usuarioA;
-  DocumentReference? get usuarioA => _usuarioA;
-  bool hasUsuarioA() => _usuarioA != null;
+  // "user_a" field.
+  DocumentReference? _userA;
+  DocumentReference? get userA => _userA;
+  bool hasUserA() => _userA != null;
 
-  // "usuarioB" field.
-  DocumentReference? _usuarioB;
-  DocumentReference? get usuarioB => _usuarioB;
-  bool hasUsuarioB() => _usuarioB != null;
+  // "user_b" field.
+  DocumentReference? _userB;
+  DocumentReference? get userB => _userB;
+  bool hasUserB() => _userB != null;
 
-  // "ultimaMsg" field.
-  String? _ultimaMsg;
-  String get ultimaMsg => _ultimaMsg ?? '';
-  bool hasUltimaMsg() => _ultimaMsg != null;
+  // "last_message" field.
+  String? _lastMessage;
+  String get lastMessage => _lastMessage ?? '';
+  bool hasLastMessage() => _lastMessage != null;
 
-  // "ultimaMsgTempo" field.
-  DateTime? _ultimaMsgTempo;
-  DateTime? get ultimaMsgTempo => _ultimaMsgTempo;
-  bool hasUltimaMsgTempo() => _ultimaMsgTempo != null;
+  // "last_message_time" field.
+  DateTime? _lastMessageTime;
+  DateTime? get lastMessageTime => _lastMessageTime;
+  bool hasLastMessageTime() => _lastMessageTime != null;
 
-  // "ultimaMsgVistaPor" field.
-  List<DocumentReference>? _ultimaMsgVistaPor;
-  List<DocumentReference> get ultimaMsgVistaPor =>
-      _ultimaMsgVistaPor ?? const [];
-  bool hasUltimaMsgVistaPor() => _ultimaMsgVistaPor != null;
+  // "last_message_sent_by" field.
+  DocumentReference? _lastMessageSentBy;
+  DocumentReference? get lastMessageSentBy => _lastMessageSentBy;
+  bool hasLastMessageSentBy() => _lastMessageSentBy != null;
 
-  // "ultimaMsgEnviadaPor" field.
-  DocumentReference? _ultimaMsgEnviadaPor;
-  DocumentReference? get ultimaMsgEnviadaPor => _ultimaMsgEnviadaPor;
-  bool hasUltimaMsgEnviadaPor() => _ultimaMsgEnviadaPor != null;
+  // "last_message_seen_by" field.
+  List<DocumentReference>? _lastMessageSeenBy;
+  List<DocumentReference> get lastMessageSeenBy =>
+      _lastMessageSeenBy ?? const [];
+  bool hasLastMessageSeenBy() => _lastMessageSeenBy != null;
 
   void _initializeFields() {
-    _usuarios = getDataList(snapshotData['usuarios']);
-    _usuarioA = snapshotData['usuarioA'] as DocumentReference?;
-    _usuarioB = snapshotData['usuarioB'] as DocumentReference?;
-    _ultimaMsg = snapshotData['ultimaMsg'] as String?;
-    _ultimaMsgTempo = snapshotData['ultimaMsgTempo'] as DateTime?;
-    _ultimaMsgVistaPor = getDataList(snapshotData['ultimaMsgVistaPor']);
-    _ultimaMsgEnviadaPor =
-        snapshotData['ultimaMsgEnviadaPor'] as DocumentReference?;
+    _users = getDataList(snapshotData['users']);
+    _userA = snapshotData['user_a'] as DocumentReference?;
+    _userB = snapshotData['user_b'] as DocumentReference?;
+    _lastMessage = snapshotData['last_message'] as String?;
+    _lastMessageTime = snapshotData['last_message_time'] as DateTime?;
+    _lastMessageSentBy =
+        snapshotData['last_message_sent_by'] as DocumentReference?;
+    _lastMessageSeenBy = getDataList(snapshotData['last_message_seen_by']);
   }
 
   static CollectionReference get collection =>
@@ -97,19 +97,19 @@ class ChatsRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createChatsRecordData({
-  DocumentReference? usuarioA,
-  DocumentReference? usuarioB,
-  String? ultimaMsg,
-  DateTime? ultimaMsgTempo,
-  DocumentReference? ultimaMsgEnviadaPor,
+  DocumentReference? userA,
+  DocumentReference? userB,
+  String? lastMessage,
+  DateTime? lastMessageTime,
+  DocumentReference? lastMessageSentBy,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'usuarioA': usuarioA,
-      'usuarioB': usuarioB,
-      'ultimaMsg': ultimaMsg,
-      'ultimaMsgTempo': ultimaMsgTempo,
-      'ultimaMsgEnviadaPor': ultimaMsgEnviadaPor,
+      'user_a': userA,
+      'user_b': userB,
+      'last_message': lastMessage,
+      'last_message_time': lastMessageTime,
+      'last_message_sent_by': lastMessageSentBy,
     }.withoutNulls,
   );
 
@@ -122,24 +122,24 @@ class ChatsRecordDocumentEquality implements Equality<ChatsRecord> {
   @override
   bool equals(ChatsRecord? e1, ChatsRecord? e2) {
     const listEquality = ListEquality();
-    return listEquality.equals(e1?.usuarios, e2?.usuarios) &&
-        e1?.usuarioA == e2?.usuarioA &&
-        e1?.usuarioB == e2?.usuarioB &&
-        e1?.ultimaMsg == e2?.ultimaMsg &&
-        e1?.ultimaMsgTempo == e2?.ultimaMsgTempo &&
-        listEquality.equals(e1?.ultimaMsgVistaPor, e2?.ultimaMsgVistaPor) &&
-        e1?.ultimaMsgEnviadaPor == e2?.ultimaMsgEnviadaPor;
+    return listEquality.equals(e1?.users, e2?.users) &&
+        e1?.userA == e2?.userA &&
+        e1?.userB == e2?.userB &&
+        e1?.lastMessage == e2?.lastMessage &&
+        e1?.lastMessageTime == e2?.lastMessageTime &&
+        e1?.lastMessageSentBy == e2?.lastMessageSentBy &&
+        listEquality.equals(e1?.lastMessageSeenBy, e2?.lastMessageSeenBy);
   }
 
   @override
   int hash(ChatsRecord? e) => const ListEquality().hash([
-        e?.usuarios,
-        e?.usuarioA,
-        e?.usuarioB,
-        e?.ultimaMsg,
-        e?.ultimaMsgTempo,
-        e?.ultimaMsgVistaPor,
-        e?.ultimaMsgEnviadaPor
+        e?.users,
+        e?.userA,
+        e?.userB,
+        e?.lastMessage,
+        e?.lastMessageTime,
+        e?.lastMessageSentBy,
+        e?.lastMessageSeenBy
       ]);
 
   @override

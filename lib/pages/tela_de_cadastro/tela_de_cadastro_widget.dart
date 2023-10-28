@@ -8,6 +8,7 @@ import '/flutter_flow/place.dart';
 import 'dart:io';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -32,10 +33,15 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
     _model = createModel(context, () => TelaDeCadastroModel());
 
     _model.nomeController ??= TextEditingController();
+    _model.nomeFocusNode ??= FocusNode();
     _model.emailController ??= TextEditingController();
+    _model.emailFocusNode ??= FocusNode();
     _model.telefoneController ??= TextEditingController();
+    _model.telefoneFocusNode ??= FocusNode();
     _model.senhaController ??= TextEditingController();
+    _model.senhaFocusNode ??= FocusNode();
     _model.confirmarSenhaController ??= TextEditingController();
+    _model.confirmarSenhaFocusNode ??= FocusNode();
   }
 
   @override
@@ -47,6 +53,15 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -139,6 +154,7 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
                                   12.0, 0.0, 20.0, 0.0),
                               child: TextFormField(
                                 controller: _model.nomeController,
+                                focusNode: _model.nomeFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.nomeController',
                                   Duration(milliseconds: 200),
@@ -224,6 +240,7 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
                                   12.0, 0.0, 20.0, 0.0),
                               child: TextFormField(
                                 controller: _model.emailController,
+                                focusNode: _model.emailFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.emailController',
                                   Duration(milliseconds: 200),
@@ -310,6 +327,7 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
                                   12.0, 0.0, 20.0, 0.0),
                               child: TextFormField(
                                 controller: _model.telefoneController,
+                                focusNode: _model.telefoneFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.telefoneController',
                                   Duration(milliseconds: 200),
@@ -458,6 +476,7 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
                                   12.0, 0.0, 20.0, 0.0),
                               child: TextFormField(
                                 controller: _model.senhaController,
+                                focusNode: _model.senhaFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.senhaController',
                                   Duration(milliseconds: 200),
@@ -558,6 +577,7 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
                                   12.0, 0.0, 20.0, 0.0),
                               child: TextFormField(
                                 controller: _model.confirmarSenhaController,
+                                focusNode: _model.confirmarSenhaFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.confirmarSenhaController',
                                   Duration(milliseconds: 200),
@@ -685,6 +705,8 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
                                       telefone: _model.telefoneController.text,
                                       tipoDeUsuario: 'Comum',
                                       localizacao: _model.localValue.latLng,
+                                      photoUrl:
+                                          'https://firebasestorage.googleapis.com/v0/b/descarteconscienters.appspot.com/o/cms_uploads%2Fusuarios%2F1698443179439000%2FBkgLight.png?alt=media&token=7441a5e2-232b-4fea-bdbe-aacae7805ca3',
                                     ));
 
                                 await authManager.sendEmailVerification();

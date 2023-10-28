@@ -16,25 +16,25 @@ class ChatMessagesRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "usuarios" field.
-  DocumentReference? _usuarios;
-  DocumentReference? get usuarios => _usuarios;
-  bool hasUsuarios() => _usuarios != null;
+  // "user" field.
+  DocumentReference? _user;
+  DocumentReference? get user => _user;
+  bool hasUser() => _user != null;
 
   // "chat" field.
   DocumentReference? _chat;
   DocumentReference? get chat => _chat;
   bool hasChat() => _chat != null;
 
-  // "texto" field.
-  String? _texto;
-  String get texto => _texto ?? '';
-  bool hasTexto() => _texto != null;
+  // "text" field.
+  String? _text;
+  String get text => _text ?? '';
+  bool hasText() => _text != null;
 
-  // "imagem" field.
-  String? _imagem;
-  String get imagem => _imagem ?? '';
-  bool hasImagem() => _imagem != null;
+  // "image" field.
+  String? _image;
+  String get image => _image ?? '';
+  bool hasImage() => _image != null;
 
   // "timestamp" field.
   DateTime? _timestamp;
@@ -42,10 +42,10 @@ class ChatMessagesRecord extends FirestoreRecord {
   bool hasTimestamp() => _timestamp != null;
 
   void _initializeFields() {
-    _usuarios = snapshotData['usuarios'] as DocumentReference?;
+    _user = snapshotData['user'] as DocumentReference?;
     _chat = snapshotData['chat'] as DocumentReference?;
-    _texto = snapshotData['texto'] as String?;
-    _imagem = snapshotData['imagem'] as String?;
+    _text = snapshotData['text'] as String?;
+    _image = snapshotData['image'] as String?;
     _timestamp = snapshotData['timestamp'] as DateTime?;
   }
 
@@ -84,18 +84,18 @@ class ChatMessagesRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createChatMessagesRecordData({
-  DocumentReference? usuarios,
+  DocumentReference? user,
   DocumentReference? chat,
-  String? texto,
-  String? imagem,
+  String? text,
+  String? image,
   DateTime? timestamp,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'usuarios': usuarios,
+      'user': user,
       'chat': chat,
-      'texto': texto,
-      'imagem': imagem,
+      'text': text,
+      'image': image,
       'timestamp': timestamp,
     }.withoutNulls,
   );
@@ -109,16 +109,16 @@ class ChatMessagesRecordDocumentEquality
 
   @override
   bool equals(ChatMessagesRecord? e1, ChatMessagesRecord? e2) {
-    return e1?.usuarios == e2?.usuarios &&
+    return e1?.user == e2?.user &&
         e1?.chat == e2?.chat &&
-        e1?.texto == e2?.texto &&
-        e1?.imagem == e2?.imagem &&
+        e1?.text == e2?.text &&
+        e1?.image == e2?.image &&
         e1?.timestamp == e2?.timestamp;
   }
 
   @override
   int hash(ChatMessagesRecord? e) => const ListEquality()
-      .hash([e?.usuarios, e?.chat, e?.texto, e?.imagem, e?.timestamp]);
+      .hash([e?.user, e?.chat, e?.text, e?.image, e?.timestamp]);
 
   @override
   bool isValidKey(Object? o) => o is ChatMessagesRecord;

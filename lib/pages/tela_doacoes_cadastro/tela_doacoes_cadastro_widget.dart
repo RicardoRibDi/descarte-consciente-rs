@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'tela_doacoes_cadastro_model.dart';
@@ -30,7 +31,9 @@ class _TelaDoacoesCadastroWidgetState extends State<TelaDoacoesCadastroWidget> {
     _model = createModel(context, () => TelaDoacoesCadastroModel());
 
     _model.nomeDoItemController ??= TextEditingController();
+    _model.nomeDoItemFocusNode ??= FocusNode();
     _model.descricaoDoItemController ??= TextEditingController();
+    _model.descricaoDoItemFocusNode ??= FocusNode();
   }
 
   @override
@@ -42,6 +45,15 @@ class _TelaDoacoesCadastroWidgetState extends State<TelaDoacoesCadastroWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -133,6 +145,7 @@ class _TelaDoacoesCadastroWidgetState extends State<TelaDoacoesCadastroWidget> {
                                 12.0, 0.0, 20.0, 0.0),
                             child: TextFormField(
                               controller: _model.nomeDoItemController,
+                              focusNode: _model.nomeDoItemFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.nomeDoItemController',
                                 Duration(milliseconds: 200),
@@ -217,6 +230,7 @@ class _TelaDoacoesCadastroWidgetState extends State<TelaDoacoesCadastroWidget> {
                                 12.0, 0.0, 20.0, 0.0),
                             child: TextFormField(
                               controller: _model.descricaoDoItemController,
+                              focusNode: _model.descricaoDoItemFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.descricaoDoItemController',
                                 Duration(milliseconds: 200),

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'tela_senha_recuperar_widget.dart' show TelaSenhaRecuperarWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +14,7 @@ class TelaSenhaRecuperarModel
 
   final unfocusNode = FocusNode();
   // State field(s) for emailAddress widget.
+  FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
 
@@ -22,6 +24,7 @@ class TelaSenhaRecuperarModel
 
   void dispose() {
     unfocusNode.dispose();
+    emailAddressFocusNode?.dispose();
     emailAddressController?.dispose();
   }
 
