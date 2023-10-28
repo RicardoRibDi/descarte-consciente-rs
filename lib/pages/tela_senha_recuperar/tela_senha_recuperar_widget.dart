@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'tela_senha_recuperar_model.dart';
@@ -27,6 +28,7 @@ class _TelaSenhaRecuperarWidgetState extends State<TelaSenhaRecuperarWidget> {
     _model = createModel(context, () => TelaSenhaRecuperarModel());
 
     _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressFocusNode ??= FocusNode();
   }
 
   @override
@@ -38,6 +40,15 @@ class _TelaSenhaRecuperarWidgetState extends State<TelaSenhaRecuperarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -86,6 +97,7 @@ class _TelaSenhaRecuperarWidgetState extends State<TelaSenhaRecuperarWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                 child: TextFormField(
                   controller: _model.emailAddressController,
+                  focusNode: _model.emailAddressFocusNode,
                   obscureText: false,
                   decoration: InputDecoration(
                     labelText: 'Email',

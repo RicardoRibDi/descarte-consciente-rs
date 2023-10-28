@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -36,9 +37,13 @@ class _TelaProprietarioRequisitarWidgetState
     _model = createModel(context, () => TelaProprietarioRequisitarModel());
 
     _model.nomeLocalController ??= TextEditingController();
+    _model.nomeLocalFocusNode ??= FocusNode();
     _model.horarioAberturaController ??= TextEditingController();
+    _model.horarioAberturaFocusNode ??= FocusNode();
     _model.horarioFechamentoController ??= TextEditingController();
+    _model.horarioFechamentoFocusNode ??= FocusNode();
     _model.descricaoController ??= TextEditingController();
+    _model.descricaoFocusNode ??= FocusNode();
   }
 
   @override
@@ -50,6 +55,15 @@ class _TelaProprietarioRequisitarWidgetState
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return StreamBuilder<UsuariosRecord>(
       stream: UsuariosRecord.getDocument(currentUserReference!),
       builder: (context, snapshot) {
@@ -181,6 +195,7 @@ class _TelaProprietarioRequisitarWidgetState
                                       12.0, 0.0, 20.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.nomeLocalController,
+                                    focusNode: _model.nomeLocalFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.nomeLocalController',
                                       Duration(milliseconds: 200),
@@ -348,6 +363,8 @@ class _TelaProprietarioRequisitarWidgetState
                                         child: TextFormField(
                                           controller:
                                               _model.horarioAberturaController,
+                                          focusNode:
+                                              _model.horarioAberturaFocusNode,
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
                                             '_model.horarioAberturaController',
@@ -441,6 +458,8 @@ class _TelaProprietarioRequisitarWidgetState
                                         child: TextFormField(
                                           controller: _model
                                               .horarioFechamentoController,
+                                          focusNode:
+                                              _model.horarioFechamentoFocusNode,
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
                                             '_model.horarioFechamentoController',
@@ -965,6 +984,7 @@ class _TelaProprietarioRequisitarWidgetState
                                       12.0, 0.0, 20.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.descricaoController,
+                                    focusNode: _model.descricaoFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.descricaoController',
                                       Duration(milliseconds: 200),

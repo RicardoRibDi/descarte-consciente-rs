@@ -12,10 +12,6 @@ import '/backend/backend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
-bool? hasNoChats(List<ChatsRecord>? allChats) {
-  return allChats?.isEmpty ?? true;
-}
-
 double? ratingSummary(
   double totalRatings,
   double rating,
@@ -38,4 +34,12 @@ double ratingSummaryList(List<AvaliacoesRecord> rating) {
     ratingsSum += comment.avaliacao!;
   }
   return double.parse((ratingsSum / rating.length).toStringAsFixed(1));
+}
+
+String? rotaGoogleMaps(
+  LatLng? localizacaoUsuario,
+  LatLng? localizacaoPonto,
+) {
+  //Insere as coordenadas na url de busca do google
+  return 'https://www.google.com/maps/dir/?api=1&origin=${localizacaoUsuario?.latitude},${localizacaoUsuario?.longitude}&destination=${localizacaoPonto?.latitude},${localizacaoPonto?.longitude}';
 }

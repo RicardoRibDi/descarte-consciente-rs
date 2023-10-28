@@ -7,6 +7,7 @@ import 'tela_doacoes_cadastro_widget.dart' show TelaDoacoesCadastroWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -16,9 +17,11 @@ class TelaDoacoesCadastroModel
 
   final unfocusNode = FocusNode();
   // State field(s) for nomeDoItem widget.
+  FocusNode? nomeDoItemFocusNode;
   TextEditingController? nomeDoItemController;
   String? Function(BuildContext, String?)? nomeDoItemControllerValidator;
   // State field(s) for descricaoDoItem widget.
+  FocusNode? descricaoDoItemFocusNode;
   TextEditingController? descricaoDoItemController;
   String? Function(BuildContext, String?)? descricaoDoItemControllerValidator;
 
@@ -28,7 +31,10 @@ class TelaDoacoesCadastroModel
 
   void dispose() {
     unfocusNode.dispose();
+    nomeDoItemFocusNode?.dispose();
     nomeDoItemController?.dispose();
+
+    descricaoDoItemFocusNode?.dispose();
     descricaoDoItemController?.dispose();
   }
 

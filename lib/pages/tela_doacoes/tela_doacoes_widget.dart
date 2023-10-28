@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/lista_vazia_doacao/lista_vazia_doacao_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -6,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -39,6 +41,15 @@ class _TelaDoacoesWidgetState extends State<TelaDoacoesWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -54,6 +65,8 @@ class _TelaDoacoesWidgetState extends State<TelaDoacoesWidget> {
             style: FlutterFlowTheme.of(context).displaySmall.override(
                   fontFamily: 'Lexend Deca',
                   color: FlutterFlowTheme.of(context).secondaryText,
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.w500,
                 ),
           ),
           actions: [
@@ -76,7 +89,7 @@ class _TelaDoacoesWidgetState extends State<TelaDoacoesWidget> {
           elevation: 0.0,
         ),
         body: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 170.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 150.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -86,7 +99,10 @@ class _TelaDoacoesWidgetState extends State<TelaDoacoesWidget> {
                   child:
                       PagedListView<DocumentSnapshot<Object?>?, DoacaoRecord>(
                     pagingController: _model.setListViewController(
-                      DoacaoRecord.collection,
+                      DoacaoRecord.collection.where(
+                        'usuario',
+                        isNotEqualTo: currentUserReference,
+                      ),
                     ),
                     padding: EdgeInsets.zero,
                     primary: false,
@@ -166,7 +182,14 @@ class _TelaDoacoesWidgetState extends State<TelaDoacoesWidget> {
                                         listViewDoacaoRecord.nomeItem,
                                         ParamType.String,
                                       ),
+                                      'usuarioRef': serializeParam(
+                                        menuItemUsuariosRecord,
+                                        ParamType.Document,
+                                      ),
                                     }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'usuarioRef': menuItemUsuariosRecord,
+                                    },
                                   );
                                 },
                                 child: Container(

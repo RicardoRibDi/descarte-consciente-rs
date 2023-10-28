@@ -8,6 +8,7 @@ import '/flutter_flow/place.dart';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -44,8 +45,16 @@ class _TelaPerfilEditarWidgetState extends State<TelaPerfilEditarWidget> {
     super.initState();
     _model = createModel(context, () => TelaPerfilEditarModel());
 
+    _model.textFieldFocusNode1 ??= FocusNode();
+
+    _model.textFieldFocusNode2 ??= FocusNode();
+
+    _model.textFieldFocusNode3 ??= FocusNode();
+
+    _model.textFieldFocusNode4 ??= FocusNode();
     _model.textController5 ??=
         TextEditingController(text: widget.endereco?.endereco);
+    _model.textFieldFocusNode5 ??= FocusNode();
   }
 
   @override
@@ -57,6 +66,15 @@ class _TelaPerfilEditarWidgetState extends State<TelaPerfilEditarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return StreamBuilder<UsuariosRecord>(
       stream: UsuariosRecord.getDocument(currentUserReference!),
       builder: (context, snapshot) {
@@ -139,6 +157,7 @@ class _TelaPerfilEditarWidgetState extends State<TelaPerfilEditarWidget> {
                                       TextEditingController(
                                     text: telaPerfilEditarUsuariosRecord.email,
                                   ),
+                                  focusNode: _model.textFieldFocusNode1,
                                   readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -222,6 +241,7 @@ class _TelaPerfilEditarWidgetState extends State<TelaPerfilEditarWidget> {
                                     text: telaPerfilEditarUsuariosRecord
                                         .tipoDeUsuario,
                                   ),
+                                  focusNode: _model.textFieldFocusNode2,
                                   readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -303,6 +323,7 @@ class _TelaPerfilEditarWidgetState extends State<TelaPerfilEditarWidget> {
                                       TextEditingController(
                                     text: telaPerfilEditarUsuariosRecord.nome,
                                   ),
+                                  focusNode: _model.textFieldFocusNode3,
                                   readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -385,6 +406,7 @@ class _TelaPerfilEditarWidgetState extends State<TelaPerfilEditarWidget> {
                                     text:
                                         telaPerfilEditarUsuariosRecord.telefone,
                                   ),
+                                  focusNode: _model.textFieldFocusNode4,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Telefone',
@@ -463,6 +485,7 @@ class _TelaPerfilEditarWidgetState extends State<TelaPerfilEditarWidget> {
                                     20.0, 12.0, 20.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.textController5,
+                                  focusNode: _model.textFieldFocusNode5,
                                   readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(

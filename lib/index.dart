@@ -24,8 +24,10 @@ export '/pages/tela_proprietario_requisitar_completo/tela_proprietario_requisita
     show TelaProprietarioRequisitarCompletoWidget;
 export '/pages/tela_proprietario_edit_descarte/tela_proprietario_edit_descarte_widget.dart'
     show TelaProprietarioEditDescarteWidget;
-export '/pages/tela_mapa/tela_mapa_widget.dart' show TelaMapaWidget;
 export '/pages/tela_descarte_detalhes/tela_descarte_detalhes_widget.dart'
     show TelaDescarteDetalhesWidget;
 export '/pages/tela_descarte_avaliar/tela_descarte_avaliar_widget.dart'
     show TelaDescarteAvaliarWidget;
+export '/pages/tela_chat_lista/tela_chat_lista_widget.dart'
+    show TelaChatListaWidget;
+export '/pages/tela_chat/tela_chat_widget.dart' show TelaChatWidget;

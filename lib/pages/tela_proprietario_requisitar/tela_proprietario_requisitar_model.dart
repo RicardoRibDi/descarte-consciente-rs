@@ -11,6 +11,7 @@ import 'tela_proprietario_requisitar_widget.dart'
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -22,15 +23,18 @@ class TelaProprietarioRequisitarModel
 
   final unfocusNode = FocusNode();
   // State field(s) for nomeLocal widget.
+  FocusNode? nomeLocalFocusNode;
   TextEditingController? nomeLocalController;
   String? Function(BuildContext, String?)? nomeLocalControllerValidator;
   // State field(s) for local widget.
   var localValue = FFPlace();
   // State field(s) for horarioAbertura widget.
+  FocusNode? horarioAberturaFocusNode;
   TextEditingController? horarioAberturaController;
   final horarioAberturaMask = MaskTextInputFormatter(mask: '##:##');
   String? Function(BuildContext, String?)? horarioAberturaControllerValidator;
   // State field(s) for horarioFechamento widget.
+  FocusNode? horarioFechamentoFocusNode;
   TextEditingController? horarioFechamentoController;
   final horarioFechamentoMask = MaskTextInputFormatter(mask: '##:##');
   String? Function(BuildContext, String?)? horarioFechamentoControllerValidator;
@@ -53,6 +57,7 @@ class TelaProprietarioRequisitarModel
   // State field(s) for CheckboxBateria widget.
   bool? checkboxBateriaValue;
   // State field(s) for descricao widget.
+  FocusNode? descricaoFocusNode;
   TextEditingController? descricaoController;
   String? Function(BuildContext, String?)? descricaoControllerValidator;
 
@@ -62,9 +67,16 @@ class TelaProprietarioRequisitarModel
 
   void dispose() {
     unfocusNode.dispose();
+    nomeLocalFocusNode?.dispose();
     nomeLocalController?.dispose();
+
+    horarioAberturaFocusNode?.dispose();
     horarioAberturaController?.dispose();
+
+    horarioFechamentoFocusNode?.dispose();
     horarioFechamentoController?.dispose();
+
+    descricaoFocusNode?.dispose();
     descricaoController?.dispose();
   }
 

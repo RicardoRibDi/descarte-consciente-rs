@@ -6,7 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 
-import '../../auth/base_auth_user_provider.dart';
+import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
@@ -165,10 +165,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'telaDoacoesDetalhes',
           path: '/telaDoacoesDetalhes',
+          asyncParams: {
+            'usuarioRef': getDoc(['usuarios'], UsuariosRecord.fromSnapshot),
+          },
           builder: (context, params) => TelaDoacoesDetalhesWidget(
             nome: params.getParam('nome', ParamType.String),
             nomeItem: params.getParam('nomeItem', ParamType.String),
             itemDescricao: params.getParam('itemDescricao', ParamType.String),
+            usuarioRef: params.getParam('usuarioRef', ParamType.Document),
           ),
         ),
         FFRoute(
@@ -188,18 +192,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => TelaProprietarioEditDescarteWidget(),
         ),
         FFRoute(
-          name: 'telaMapa',
-          path: '/telaMapa',
-          builder: (context, params) => TelaMapaWidget(
-            materialFiltro: params.getParam('materialFiltro', ParamType.String),
-          ),
-        ),
-        FFRoute(
           name: 'telaDescarteDetalhes',
           path: '/telaDescarteDetalhes',
           builder: (context, params) => TelaDescarteDetalhesWidget(
             descarteRef: params.getParam('descarteRef',
                 ParamType.DocumentReference, false, ['local_descarte']),
+            localizacaoUsuario:
+                params.getParam('localizacaoUsuario', ParamType.LatLng),
           ),
         ),
         FFRoute(
@@ -208,6 +207,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => TelaDescarteAvaliarWidget(
             descarteRef: params.getParam('descarteRef',
                 ParamType.DocumentReference, false, ['local_descarte']),
+          ),
+        ),
+        FFRoute(
+          name: 'telaChatLista',
+          path: '/telaChatLista',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'telaChatLista')
+              : TelaChatListaWidget(),
+        ),
+        FFRoute(
+          name: 'telaChat',
+          path: '/telaChat',
+          asyncParams: {
+            'chatUsuario': getDoc(['usuarios'], UsuariosRecord.fromSnapshot),
+          },
+          builder: (context, params) => TelaChatWidget(
+            chatUsuario: params.getParam('chatUsuario', ParamType.Document),
+            chatRef: params.getParam(
+                'chatRef', ParamType.DocumentReference, false, ['chats']),
+            nomeUsuario: params.getParam('nomeUsuario', ParamType.String),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),

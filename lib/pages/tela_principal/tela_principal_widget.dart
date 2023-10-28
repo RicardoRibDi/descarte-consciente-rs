@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -8,6 +9,7 @@ import 'dart:io';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +43,15 @@ class _TelaPrincipalWidgetState extends State<TelaPrincipalWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return StreamBuilder<List<MateriaisDBRecord>>(
       stream: queryMateriaisDBRecord(),
       builder: (context, snapshot) {
@@ -831,10 +842,12 @@ class _TelaPrincipalWidgetState extends State<TelaPrincipalWidget> {
                     StreamBuilder<List<LocalDescarteRecord>>(
                       stream: queryLocalDescarteRecord(
                         queryBuilder: (localDescarteRecord) =>
-                            localDescarteRecord.where(
-                          'ativo',
-                          isEqualTo: true,
-                        ),
+                            localDescarteRecord
+                                .where(
+                                  'ativo',
+                                  isEqualTo: true,
+                                )
+                                .orderBy('nomeLocal'),
                       ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
@@ -1071,6 +1084,19 @@ class _TelaPrincipalWidgetState extends State<TelaPrincipalWidget> {
                                                   wrapLocalDescarteRecord
                                                       .reference,
                                                   ParamType.DocumentReference,
+                                                ),
+                                                'localizacaoUsuario':
+                                                    serializeParam(
+                                                  _model.localValue.address ==
+                                                              null ||
+                                                          _model.localValue
+                                                                  .address ==
+                                                              ''
+                                                      ? currentUserDocument
+                                                          ?.localizacao
+                                                      : _model
+                                                          .localValue.latLng,
+                                                  ParamType.LatLng,
                                                 ),
                                               }.withoutNulls,
                                             );
