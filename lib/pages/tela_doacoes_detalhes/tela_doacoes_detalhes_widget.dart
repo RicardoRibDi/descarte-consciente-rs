@@ -1,9 +1,11 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'tela_doacoes_detalhes_model.dart';
@@ -15,11 +17,13 @@ class TelaDoacoesDetalhesWidget extends StatefulWidget {
     required this.nome,
     required this.nomeItem,
     required this.itemDescricao,
+    this.usuarioRef,
   }) : super(key: key);
 
   final String? nome;
   final String? nomeItem;
   final String? itemDescricao;
+  final UsuariosRecord? usuarioRef;
 
   @override
   _TelaDoacoesDetalhesWidgetState createState() =>
@@ -46,6 +50,15 @@ class _TelaDoacoesDetalhesWidgetState extends State<TelaDoacoesDetalhesWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -250,10 +263,29 @@ class _TelaDoacoesDetalhesWidgetState extends State<TelaDoacoesDetalhesWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 20.0, 0.0, 0.0),
                               child: FFButtonWidget(
-                                onPressed: () {
-                                  print('Button pressed ...');
+                                onPressed: () async {
+                                  context.pushNamed(
+                                    'telaChat',
+                                    queryParameters: {
+                                      'chatUsuario': serializeParam(
+                                        widget.usuarioRef,
+                                        ParamType.Document,
+                                      ),
+                                      'nomeUsuario': serializeParam(
+                                        widget.nome,
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'chatUsuario': widget.usuarioRef,
+                                    },
+                                  );
                                 },
                                 text: 'Entrar em contato',
+                                icon: Icon(
+                                  Icons.chat,
+                                  size: 15.0,
+                                ),
                                 options: FFButtonOptions(
                                   width: 200.0,
                                   height: 50.0,

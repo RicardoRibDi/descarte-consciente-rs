@@ -9,6 +9,7 @@ import 'dart:io';
 import 'tela_de_cadastro_widget.dart' show TelaDeCadastroWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -18,22 +19,27 @@ class TelaDeCadastroModel extends FlutterFlowModel<TelaDeCadastroWidget> {
 
   final unfocusNode = FocusNode();
   // State field(s) for nome widget.
+  FocusNode? nomeFocusNode;
   TextEditingController? nomeController;
   String? Function(BuildContext, String?)? nomeControllerValidator;
   // State field(s) for email widget.
+  FocusNode? emailFocusNode;
   TextEditingController? emailController;
   String? Function(BuildContext, String?)? emailControllerValidator;
   // State field(s) for telefone widget.
+  FocusNode? telefoneFocusNode;
   TextEditingController? telefoneController;
   final telefoneMask = MaskTextInputFormatter(mask: '+55 (##) #####-####');
   String? Function(BuildContext, String?)? telefoneControllerValidator;
   // State field(s) for local widget.
   var localValue = FFPlace();
   // State field(s) for senha widget.
+  FocusNode? senhaFocusNode;
   TextEditingController? senhaController;
   late bool senhaVisibility;
   String? Function(BuildContext, String?)? senhaControllerValidator;
   // State field(s) for confirmarSenha widget.
+  FocusNode? confirmarSenhaFocusNode;
   TextEditingController? confirmarSenhaController;
   late bool confirmarSenhaVisibility;
   String? Function(BuildContext, String?)? confirmarSenhaControllerValidator;
@@ -47,10 +53,19 @@ class TelaDeCadastroModel extends FlutterFlowModel<TelaDeCadastroWidget> {
 
   void dispose() {
     unfocusNode.dispose();
+    nomeFocusNode?.dispose();
     nomeController?.dispose();
+
+    emailFocusNode?.dispose();
     emailController?.dispose();
+
+    telefoneFocusNode?.dispose();
     telefoneController?.dispose();
+
+    senhaFocusNode?.dispose();
     senhaController?.dispose();
+
+    confirmarSenhaFocusNode?.dispose();
     confirmarSenhaController?.dispose();
   }
 

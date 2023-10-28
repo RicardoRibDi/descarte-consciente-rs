@@ -1,6 +1,20 @@
 {
   "indexes": [
     {
+      "collectionGroup": "local_descarte",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "ativo",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "nomeLocal",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "avaliacoes",
       "queryScope": "COLLECTION",
       "fields": [
@@ -10,6 +24,34 @@
         },
         {
           "fieldPath": "data_criacao",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "chats",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "users",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "last_message_time",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "chat_messages",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "chat",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
           "order": "DESCENDING"
         }
       ]
