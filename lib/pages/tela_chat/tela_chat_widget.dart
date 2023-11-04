@@ -1,5 +1,7 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/chat/index.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -77,93 +79,178 @@ class _TelaChatWidgetState extends State<TelaChatWidget> {
       );
     }
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        automaticallyImplyLeading: false,
-        leading: InkWell(
-          splashColor: Colors.transparent,
-          focusColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onTap: () async {
-            context.pop();
-          },
-          child: Icon(
-            Icons.arrow_back_rounded,
-            color: FlutterFlowTheme.of(context).secondaryText,
-            size: 24.0,
-          ),
+    return FutureBuilder<List<ChatsRecord>>(
+      future: queryChatsRecordOnce(
+        queryBuilder: (chatsRecord) => chatsRecord.where(
+          'users',
+          arrayContains: widget.chatUsuario?.reference,
         ),
-        title: Text(
-          widget.nomeUsuario!,
-          style: FlutterFlowTheme.of(context).headlineMedium.override(
-                fontFamily: 'Lexend Deca',
-                color: FlutterFlowTheme.of(context).secondaryText,
-              ),
-        ),
-        actions: [],
-        centerTitle: false,
-        elevation: 0.0,
+        singleRecord: true,
       ),
-      body: StreamBuilder<FFChatInfo>(
-        stream: FFChatManager.instance.getChatInfo(
-          otherUserRecord: widget.chatUsuario,
-          chatReference: widget.chatRef,
-        ),
-        builder: (context, snapshot) => snapshot.hasData
-            ? FFChatPage(
-                chatInfo: snapshot.data!,
-                allowImages: false,
-                backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-                timeDisplaySetting: TimeDisplaySetting.alwaysVisible,
-                currentUserBoxDecoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: Colors.transparent,
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Scaffold(
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            body: Center(
+              child: SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    FlutterFlowTheme.of(context).primary,
                   ),
-                  borderRadius: BorderRadius.circular(15.0),
                 ),
-                otherUsersBoxDecoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  border: Border.all(
-                    color: Colors.transparent,
+              ),
+            ),
+          );
+        }
+        List<ChatsRecord> telaChatChatsRecordList = snapshot.data!;
+        // Return an empty Container when the item does not exist.
+        if (snapshot.data!.isEmpty) {
+          return Container();
+        }
+        final telaChatChatsRecord = telaChatChatsRecordList.isNotEmpty
+            ? telaChatChatsRecordList.first
+            : null;
+        return Scaffold(
+          key: scaffoldKey,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          appBar: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            automaticallyImplyLeading: false,
+            leading: InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                context.pop();
+              },
+              child: Icon(
+                Icons.arrow_back_rounded,
+                color: FlutterFlowTheme.of(context).secondaryText,
+                size: 24.0,
+              ),
+            ),
+            title: Text(
+              widget.nomeUsuario!,
+              style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    fontFamily: 'Lexend Deca',
+                    color: FlutterFlowTheme.of(context).secondaryText,
                   ),
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                currentUserTextStyle:
-                    FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Lexend Deca',
-                          fontWeight: FontWeight.w500,
+            ),
+            actions: [
+              FutureBuilder<UsuariosRecord>(
+                future: UsuariosRecord.getDocumentOnce(
+                    telaChatChatsRecord?.userA == currentUserReference
+                        ? telaChatChatsRecord!.userB!
+                        : telaChatChatsRecord!.userA!),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
                         ),
-                otherUsersTextStyle:
-                    FlutterFlowTheme.of(context).bodyMedium.override(
+                      ),
+                    );
+                  }
+                  final iconButtonUsuariosRecord = snapshot.data!;
+                  return FlutterFlowIconButton(
+                    borderColor: FlutterFlowTheme.of(context).primaryBackground,
+                    borderRadius: 20.0,
+                    borderWidth: 1.0,
+                    buttonSize: 55.0,
+                    fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                    icon: Icon(
+                      Icons.campaign_outlined,
+                      color: FlutterFlowTheme.of(context).error,
+                      size: 35.0,
+                    ),
+                    onPressed: () async {
+                      context.pushNamed(
+                        'telaDenunciar',
+                        queryParameters: {
+                          'usuarioDenunciado': serializeParam(
+                            iconButtonUsuariosRecord.reference,
+                            ParamType.DocumentReference,
+                          ),
+                        }.withoutNulls,
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+            centerTitle: false,
+            elevation: 0.0,
+          ),
+          body: StreamBuilder<FFChatInfo>(
+            stream: FFChatManager.instance.getChatInfo(
+              otherUserRecord: widget.chatUsuario,
+              chatReference: widget.chatRef,
+            ),
+            builder: (context, snapshot) => snapshot.hasData
+                ? FFChatPage(
+                    chatInfo: snapshot.data!,
+                    allowImages: false,
+                    backgroundColor:
+                        FlutterFlowTheme.of(context).primaryBackground,
+                    timeDisplaySetting: TimeDisplaySetting.alwaysVisible,
+                    currentUserBoxDecoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: Colors.transparent,
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    otherUsersBoxDecoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      border: Border.all(
+                        color: Colors.transparent,
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    currentUserTextStyle:
+                        FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Lexend Deca',
+                              fontWeight: FontWeight.w500,
+                            ),
+                    otherUsersTextStyle: FlutterFlowTheme.of(context)
+                        .bodyMedium
+                        .override(
                           fontFamily: 'Lexend Deca',
                           color: FlutterFlowTheme.of(context).primaryBackground,
                           fontWeight: FontWeight.w500,
                         ),
-                inputHintTextStyle:
-                    FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Lexend Deca',
-                          color: Color(0xFFDAF4FF),
-                          fontSize: 0.0,
+                    inputHintTextStyle:
+                        FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Lexend Deca',
+                              color: Color(0xFFDAF4FF),
+                              fontSize: 0.0,
+                            ),
+                    inputTextStyle: FlutterFlowTheme.of(context).bodyMedium,
+                  )
+                : Center(
+                    child: SizedBox(
+                      width: 50.0,
+                      height: 50.0,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          FlutterFlowTheme.of(context).primary,
                         ),
-                inputTextStyle: FlutterFlowTheme.of(context).bodyMedium,
-              )
-            : Center(
-                child: SizedBox(
-                  width: 50.0,
-                  height: 50.0,
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      FlutterFlowTheme.of(context).primary,
+                      ),
                     ),
                   ),
-                ),
-              ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

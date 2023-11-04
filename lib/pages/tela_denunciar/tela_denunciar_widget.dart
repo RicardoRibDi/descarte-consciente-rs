@@ -1,5 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -9,32 +7,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'tela_doacoes_cadastro_model.dart';
-export 'tela_doacoes_cadastro_model.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'tela_denunciar_model.dart';
+export 'tela_denunciar_model.dart';
 
-class TelaDoacoesCadastroWidget extends StatefulWidget {
-  const TelaDoacoesCadastroWidget({Key? key}) : super(key: key);
+class TelaDenunciarWidget extends StatefulWidget {
+  const TelaDenunciarWidget({
+    Key? key,
+    required this.usuarioDenunciado,
+  }) : super(key: key);
+
+  final DocumentReference? usuarioDenunciado;
 
   @override
-  _TelaDoacoesCadastroWidgetState createState() =>
-      _TelaDoacoesCadastroWidgetState();
+  _TelaDenunciarWidgetState createState() => _TelaDenunciarWidgetState();
 }
 
-class _TelaDoacoesCadastroWidgetState extends State<TelaDoacoesCadastroWidget> {
-  late TelaDoacoesCadastroModel _model;
+class _TelaDenunciarWidgetState extends State<TelaDenunciarWidget> {
+  late TelaDenunciarModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TelaDoacoesCadastroModel());
+    _model = createModel(context, () => TelaDenunciarModel());
 
-    _model.nomeDoItemController ??= TextEditingController();
-    _model.nomeDoItemFocusNode ??= FocusNode();
-
-    _model.descricaoDoItemController ??= TextEditingController();
-    _model.descricaoDoItemFocusNode ??= FocusNode();
+    _model.textFieldController ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -80,7 +80,7 @@ class _TelaDoacoesCadastroWidgetState extends State<TelaDoacoesCadastroWidget> {
             ),
           ),
           title: Text(
-            'Cadastro de doação',
+            'Denunciar',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Lexend Deca',
                   color: FlutterFlowTheme.of(context).secondaryText,
@@ -111,102 +111,17 @@ class _TelaDoacoesCadastroWidgetState extends State<TelaDoacoesCadastroWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
                       child: Text(
-                        'Anuncie sua doação! (:',
-                        textAlign: TextAlign.center,
+                        'As informações preenchidas abaixo serão enviados para a nossa equipe para que possamos analisar o motivo da denúncia o mais rápido possível.',
+                        textAlign: TextAlign.justify,
                         style: FlutterFlowTheme.of(context)
                             .headlineMedium
                             .override(
                               fontFamily: 'Lexend Deca',
                               color: FlutterFlowTheme.of(context).primaryText,
-                              fontSize: 50.0,
+                              fontSize: 16.0,
                             ),
-                      ),
-                    ),
-                    Align(
-                      alignment: AlignmentDirectional(0.00, 0.00),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            40.0, 0.0, 40.0, 12.0),
-                        child: Container(
-                          width: double.infinity,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            borderRadius: BorderRadius.circular(25.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 20.0, 0.0),
-                            child: TextFormField(
-                              controller: _model.nomeDoItemController,
-                              focusNode: _model.nomeDoItemFocusNode,
-                              onChanged: (_) => EasyDebounce.debounce(
-                                '_model.nomeDoItemController',
-                                Duration(milliseconds: 200),
-                                () => setState(() {}),
-                              ),
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Nome do Item*',
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                    ),
-                                hintText: 'O que você quer doar?',
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).success,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(30.0),
-                                ),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                              validator: _model.nomeDoItemControllerValidator
-                                  .asValidator(context),
-                            ),
-                          ),
-                        ),
                       ),
                     ),
                     Align(
@@ -228,20 +143,19 @@ class _TelaDoacoesCadastroWidgetState extends State<TelaDoacoesCadastroWidget> {
                           ),
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 20.0, 0.0),
+                                12.0, 0.0, 12.0, 0.0),
                             child: TextFormField(
-                              controller: _model.descricaoDoItemController,
-                              focusNode: _model.descricaoDoItemFocusNode,
+                              controller: _model.textFieldController,
+                              focusNode: _model.textFieldFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
-                                '_model.descricaoDoItemController',
+                                '_model.textFieldController',
                                 Duration(milliseconds: 200),
                                 () => setState(() {}),
                               ),
                               textCapitalization: TextCapitalization.none,
                               obscureText: false,
                               decoration: InputDecoration(
-                                hintText:
-                                    'Dê uma breve descrição do que quer doar... (opcional)',
+                                hintText: 'Informe o motivo da denúncia...',
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context)
@@ -283,8 +197,7 @@ class _TelaDoacoesCadastroWidgetState extends State<TelaDoacoesCadastroWidget> {
                                   ),
                               maxLines: 10,
                               keyboardType: TextInputType.multiline,
-                              validator: _model
-                                  .descricaoDoItemControllerValidator
+                              validator: _model.textFieldControllerValidator
                                   .asValidator(context),
                             ),
                           ),
@@ -293,17 +206,22 @@ class _TelaDoacoesCadastroWidgetState extends State<TelaDoacoesCadastroWidget> {
                     ),
                     FFButtonWidget(
                       onPressed: () async {
-                        await DoacaoRecord.collection
-                            .doc()
-                            .set(createDoacaoRecordData(
-                              usuario: currentUserReference,
-                              nomeItem: _model.nomeDoItemController.text,
-                              descricaoItem:
-                                  _model.descricaoDoItemController.text,
-                            ));
-                        context.safePop();
+                        await launchUrl(Uri(
+                            scheme: 'mailto',
+                            path: 'descarteconscienters.app@gmail.com',
+                            query: {
+                              'subject':
+                                  'Denúncia - Usuário: \"${widget.usuarioDenunciado?.id}\".',
+                              'body': _model.textFieldController.text,
+                            }
+                                .entries
+                                .map((MapEntry<String, String> e) =>
+                                    '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+                                .join('&')));
+
+                        context.goNamed('telaDenunciarCompleto');
                       },
-                      text: 'Cadastrar Doação',
+                      text: 'Enviar Denúncia',
                       options: FFButtonOptions(
                         width: 300.0,
                         height: 55.0,

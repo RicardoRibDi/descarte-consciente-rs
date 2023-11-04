@@ -1,23 +1,25 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
-import '/flutter_flow/chat/index.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'tela_chat_widget.dart' show TelaChatWidget;
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'tela_suporte_completo_widget.dart' show TelaSuporteCompletoWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class TelaChatModel extends FlutterFlowModel<TelaChatWidget> {
+class TelaSuporteCompletoModel
+    extends FlutterFlowModel<TelaSuporteCompletoWidget> {
+  ///  State fields for stateful widgets in this page.
+
+  final unfocusNode = FocusNode();
+
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}
 
-  void dispose() {}
+  void dispose() {
+    unfocusNode.dispose();
+  }
 
   /// Action blocks are added here.
 
