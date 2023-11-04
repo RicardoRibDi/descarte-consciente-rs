@@ -38,10 +38,13 @@ class _TelaProprietarioRequisitarWidgetState
 
     _model.nomeLocalController ??= TextEditingController();
     _model.nomeLocalFocusNode ??= FocusNode();
+
     _model.horarioAberturaController ??= TextEditingController();
     _model.horarioAberturaFocusNode ??= FocusNode();
+
     _model.horarioFechamentoController ??= TextEditingController();
     _model.horarioFechamentoFocusNode ??= FocusNode();
+
     _model.descricaoController ??= TextEditingController();
     _model.descricaoFocusNode ??= FocusNode();
   }

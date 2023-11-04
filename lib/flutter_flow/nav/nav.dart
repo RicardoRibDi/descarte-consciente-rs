@@ -228,6 +228,31 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 'chatRef', ParamType.DocumentReference, false, ['chats']),
             nomeUsuario: params.getParam('nomeUsuario', ParamType.String),
           ),
+        ),
+        FFRoute(
+          name: 'telaDenunciar',
+          path: '/telaDenunciar',
+          builder: (context, params) => TelaDenunciarWidget(
+            usuarioDenunciado: params.getParam('usuarioDenunciado',
+                ParamType.DocumentReference, false, ['usuarios']),
+          ),
+        ),
+        FFRoute(
+          name: 'telaSuporte',
+          path: '/telaSuporte',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'telaSuporte')
+              : TelaSuporteWidget(),
+        ),
+        FFRoute(
+          name: 'telaSuporteCompleto',
+          path: '/telaSuporteCompleto',
+          builder: (context, params) => TelaSuporteCompletoWidget(),
+        ),
+        FFRoute(
+          name: 'telaDenunciarCompleto',
+          path: '/telaDenunciarCompleto',
+          builder: (context, params) => TelaDenunciarCompletoWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
