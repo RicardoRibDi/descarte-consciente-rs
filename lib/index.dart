@@ -31,3 +31,10 @@ export '/pages/tela_descarte_avaliar/tela_descarte_avaliar_widget.dart'
 export '/pages/tela_chat_lista/tela_chat_lista_widget.dart'
     show TelaChatListaWidget;
 export '/pages/tela_chat/tela_chat_widget.dart' show TelaChatWidget;
+export '/pages/tela_denunciar/tela_denunciar_widget.dart'
+    show TelaDenunciarWidget;
+export '/pages/tela_suporte/tela_suporte_widget.dart' show TelaSuporteWidget;
+export '/pages/tela_suporte_completo/tela_suporte_completo_widget.dart'
+    show TelaSuporteCompletoWidget;
+export '/pages/tela_denunciar_completo/tela_denunciar_completo_widget.dart'
+    show TelaDenunciarCompletoWidget;

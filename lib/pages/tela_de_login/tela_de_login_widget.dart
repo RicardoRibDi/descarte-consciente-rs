@@ -30,6 +30,7 @@ class _TelaDeLoginWidgetState extends State<TelaDeLoginWidget> {
 
     _model.textFieldEmailController ??= TextEditingController();
     _model.textFieldEmailFocusNode ??= FocusNode();
+
     _model.textFieldSenhaController ??= TextEditingController();
     _model.textFieldSenhaFocusNode ??= FocusNode();
   }

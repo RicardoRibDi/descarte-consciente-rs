@@ -34,12 +34,16 @@ class _TelaDeCadastroWidgetState extends State<TelaDeCadastroWidget> {
 
     _model.nomeController ??= TextEditingController();
     _model.nomeFocusNode ??= FocusNode();
+
     _model.emailController ??= TextEditingController();
     _model.emailFocusNode ??= FocusNode();
+
     _model.telefoneController ??= TextEditingController();
     _model.telefoneFocusNode ??= FocusNode();
+
     _model.senhaController ??= TextEditingController();
     _model.senhaFocusNode ??= FocusNode();
+
     _model.confirmarSenhaController ??= TextEditingController();
     _model.confirmarSenhaFocusNode ??= FocusNode();
   }

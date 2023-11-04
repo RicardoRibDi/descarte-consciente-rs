@@ -52,6 +52,7 @@ class _TelaPerfilEditarWidgetState extends State<TelaPerfilEditarWidget> {
     _model.textFieldFocusNode3 ??= FocusNode();
 
     _model.textFieldFocusNode4 ??= FocusNode();
+
     _model.textController5 ??=
         TextEditingController(text: widget.endereco?.endereco);
     _model.textFieldFocusNode5 ??= FocusNode();

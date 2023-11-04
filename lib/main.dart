@@ -132,6 +132,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'telaPrincipal': TelaPrincipalWidget(),
       'telaDoacoes': TelaDoacoesWidget(),
       'telaChatLista': TelaChatListaWidget(),
+      'telaSuporte': TelaSuporteWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -249,6 +250,30 @@ class _NavBarPageState extends State<NavBarPage> {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 3
+                        ? FlutterFlowTheme.of(context).secondaryText
+                        : FlutterFlowTheme.of(context).accent3,
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.support_agent,
+                  color: currentIndex == 4
+                      ? FlutterFlowTheme.of(context).secondaryText
+                      : FlutterFlowTheme.of(context).accent3,
+                  size: 24.0,
+                ),
+                Text(
+                  'Suporte',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 4
                         ? FlutterFlowTheme.of(context).secondaryText
                         : FlutterFlowTheme.of(context).accent3,
                     fontSize: 11.0,
